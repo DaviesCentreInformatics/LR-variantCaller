@@ -16,6 +16,7 @@ workflow LONG_READ_MAPPING {
 	main:
 		MINIMAP2_INDEX(reference_genome)
 		//index = MINIMAP2_INDEX.out.indexed_reference
+		index = params.minimap_index
 
 		MINIMAP2_MAP(filtered_reads, index)
 		mapped = MINIMAP2_MAP.out.mapped_tuple
