@@ -1,0 +1,7 @@
+.nextflow/*
+*.fastq.gz
+work/*
+results/*
+*.fa
+*.mmi
+*.nextflow.log*
