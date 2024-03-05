@@ -1,5 +1,3 @@
-#!/usr/bin/env nextflow
-// Set the DSL syntax to version 2
 nextflow.enable.dsl=2
 
 /*
@@ -65,10 +63,10 @@ Channel.fromPath(params.samplesheet, checkIfExists: true)
 /*
  * Import the workflow from the workflows directory
  */
-include { SHORT as LONG_READ_VARIANTS } from './workflows/short'
+include { LONG_READ_VARIANTS as DLRVC } from './workflows/long_read_variants'
 
 workflow {
-	LONG_READ_VARIANTS(samples)
+	DLRVC(samples)
 }
 
 
