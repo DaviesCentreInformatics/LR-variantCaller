@@ -16,9 +16,9 @@ process SNIFFLES2 {
 	// TODO: Make this pattern more generalisable or configurable.
 	script:
 	bam_path = bam.toString()
-	ctg_pattern = ~/NC_\d+\.\d+/
-	ctg_name = bam_path =~ ctg_pattern
-	ctg_name = ctg_name[0]
+	bam_name = bam_path.find(/(?<=_).*(?=\.bam)/)
+	//ctg_name = ctg_name[0]
+	ctg_name = bam_name
 
 	"""
 	sniffles --input $bam \
