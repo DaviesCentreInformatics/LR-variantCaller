@@ -8,27 +8,27 @@ and this project adheres to
 
 ### Added
 
-- List of new features
+- `makeSamplesheet.py` script to generate a samplesheet from a directory of fastq files.
 
 ### Changed
 
-- List of what was changed
+- N/A
 
 ### Deprecated
 
-- List of what will soon be removed
+- N/A
 
 ### Removed
 
-- List of what no longer works
+- N/A
 
 ### Fixed
 
-- List of bugs that were fixed
+- N/A
 
 ### Security
 
-- List of security concerns/vulnerabilities
+- N/A
 
 ## [v1.0.0](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.0.0) - 2024-03-06
 
