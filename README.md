@@ -31,7 +31,8 @@ SRR24678051,/Users/callummacphillamy/Projects/LR-variantCaller/input_data/raw_fa
 ```
 
 You should create this file in a directory where you want your results to be
-saved. E.g.
+saved. This is a requirement for the workflow to work with `singularity`. 
+E.g.
 
 ``` bash
 mkdir -p /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1
@@ -46,7 +47,7 @@ screen -S nextflow
 
 module load Singularity
 
-nextflow run /hpcfs/groups/phoenix-hpc-avsci/WORKFLOWS/LR-variantCaller --samplesheet human_ont_5X_samplesheet.csv --reference $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.fa --minimap_index $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.mmi --sourceDir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 --outdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 -profile singularity,slurm
+nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller --samplesheet human_ont_5X_samplesheet.csv --reference $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.fa --minimap_index $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.mmi --sourceDir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 --outdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 -profile singularity,slurm
 ```
 
 Once it's running, you can detach from the screen session by pressing `Ctrl + A`
