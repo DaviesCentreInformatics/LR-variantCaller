@@ -22,9 +22,11 @@ process CLAIR3 {
 	script:
 	model_path = "/opt/models/r941_prom_hac_g238/"
 	bam_path = bam.toString()
-	ctg_pattern = ~/NC_\d+\.\d+/
-	ctg_name = bam_path =~ ctg_pattern
-	ctg_name = ctg_name[0]
+	//ctg_pattern = "$params.chrom_pattern"
+	//ctg_name = bam_path =~ ctg_pattern
+	bam_name = bam_path.find(/(?<=_).*(?=\.bam)/)
+	//ctg_name = ctg_name[0]
+	ctg_name = bam_name
 	"""
 	run_clair3.sh --bam_fn ${bam} \
 		--ref_fn=${fa} \
