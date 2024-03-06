@@ -74,14 +74,14 @@ process SAMTOOLS_SPLITBAM {
 	tuple val(sampleID), path(bam), path(bai)
 
 	output:
-    tuple val(sampleID), path("${sampleID}.*.bam"), path("${sampleID}.*.bam.bai"), emit: split_bam
+    tuple val(sampleID), path("${sampleID}_*.bam"), path("${sampleID}_*.bam.bai"), emit: split_bam
 
 	shell:
     '''
     samtools idxstats !{bam} | cut -f 1 | grep -v '*' > !{sampleID}.chromosomes.txt
     while IFS= read -r line; do
-        samtools view -b !{bam} ${line} > !{sampleID}.${line}.bam ;
-        samtools index !{sampleID}.${line}.bam
+        samtools view -b !{bam} ${line} > !{sampleID}_${line}.bam ;
+        samtools index !{sampleID}_${line}.bam
     done < !{sampleID}.chromosomes.txt
     '''
 }
