@@ -48,3 +48,4 @@ The pipeline performs the following steps:
 9. Generate MultiQC report.
 
 **Full Changelog**: https://github.com/DaviesCentreInformatics/LR-variantCaller/commits/v1.0.0
+ 
