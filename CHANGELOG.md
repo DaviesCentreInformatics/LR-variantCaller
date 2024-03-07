@@ -8,7 +8,7 @@ and this project adheres to
 
 ### Added
 
-- `makeSamplesheet.py` script to generate a samplesheet from a directory of fastq files.
+- N/A
 
 ### Changed
 
@@ -30,7 +30,17 @@ and this project adheres to
 
 - N/A
 
+## [v1.0.2](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.0.2)
+
+### Fixed
+
+- Fixed error where splitbam would split all contigs, not just actual chromosomes.
+
 ## [v1.0.1](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.0.1) - 2024-03-07
+
+### Added
+
+- `makeSamplesheet.py` script to generate a samplesheet from a directory of fastq files.
 
 ### Fixed
 
