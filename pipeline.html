@@ -23,9 +23,9 @@ flowchart TB
     subgraph " "
     v0["Channel.fromPath"]
     v10["reference"]
-    v17["reference"]
+    v18["reference"]
     end
-    subgraph SHORT
+    subgraph DLRVC
     subgraph LONG_READ_PREPROCESSING
     v3([NANOPLOT_RAW])
     v4([FILTLONG])
@@ -34,31 +34,32 @@ flowchart TB
     end
     subgraph LONG_READ_MAPPING
     v11([MINIMAP2_MAP])
-    v12([SAMTOOLS_FLAGSTAT])
-    v13([SAMTOOLS_IDXSTATS])
-    v14([SAMTOOLS_STATS])
-    v15([SPLITBAM])
-    v16(( ))
+    v12([MOSDEPTH])
+    v13([SAMTOOLS_FLAGSTAT])
+    v14([SAMTOOLS_IDXSTATS])
+    v15([SAMTOOLS_STATS])
+    v16([SPLITBAM])
+    v17(( ))
     end
-    v18([SAMTOOLS_FAIDX])
+    v19([SAMTOOLS_FAIDX])
     subgraph LONG_READ_VARIANT_CALLING
-    v19([SNIFFLES2])
+    v20([CLAIR3])
+    v21([SNIFFLES2])
     end
-    v24([MULTIQC])
-    v22(( ))
+    v25([MULTIQC])
+    v23(( ))
     end
     subgraph " "
     v5[" "]
     v6[" "]
     v7[" "]
     v8[" "]
-    v20[" "]
-    v25[" "]
     v26[" "]
+    v27[" "]
     end
     v0 --> v1
     v1 --> v3
-    v3 --> v22
+    v3 --> v23
     v1 --> v4
     v4 --> v9
     v4 --> v8
@@ -66,23 +67,28 @@ flowchart TB
     v4 --> v6
     v4 --> v5
     v4 --> v11
-    v9 --> v22
+    v9 --> v23
     v10 --> v11
     v11 --> v12
     v11 --> v13
     v11 --> v14
     v11 --> v15
-    v12 --> v22
-    v13 --> v22
-    v14 --> v22
-    v15 --> v16
-    v17 --> v18
+    v11 --> v16
+    v12 --> v23
+    v13 --> v23
+    v14 --> v23
+    v15 --> v23
+    v16 --> v17
     v18 --> v19
-    v16 --> v19
     v19 --> v20
-    v22 --> v24
-    v24 --> v26
-    v24 --> v25
+    v19 --> v21
+    v17 --> v20
+    v20 --> v23
+    v17 --> v21
+    v21 --> v23
+    v23 --> v25
+    v25 --> v27
+    v25 --> v26
 
 </pre>
 <script type="module">
