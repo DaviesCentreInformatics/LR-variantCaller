@@ -7,6 +7,10 @@ Technologies (ONT) long read sequencing data. It is designed to be run on the
 University of Adelaide's HPC, Phoenix. It is written in Nextflow and uses
 Singularity to manage the containers.
 
+## Pipeline overview
+
+![Pipeline overview](pipeline_overview.html)
+
 ## Installation
 
 Ensure you have Nextflow installed. The easiest way to do this is to create a
