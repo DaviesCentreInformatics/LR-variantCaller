@@ -30,6 +30,12 @@ and this project adheres to
 
 - N/A
 
+## [v1.0.1](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.0.1) - 2024-03-07
+
+### Fixed
+
+- Fixed mismatch in output pattern and input patterns for `sniffles2.nf` after changing the `splitbam` output pattern.
+
 ## [v1.0.0](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.0.0) - 2024-03-06
 
 ### Initial release
