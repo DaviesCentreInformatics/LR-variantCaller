@@ -78,7 +78,7 @@ process SAMTOOLS_SPLITBAM {
 
 	shell:
     '''
-    samtools idxstats !{bam} | cut -f 1 | grep -v '*' > !{sampleID}.chromosomes.txt
+    samtools idxstats !{bam} | cut -f 1 | grep -E '^([0-9]{1,2}|X|Y|M|MT)$' > !{sampleID}.chromosomes.txt
     while IFS= read -r line; do
         samtools view -b !{bam} ${line} > !{sampleID}_${line}.bam ;
         samtools index !{sampleID}_${line}.bam

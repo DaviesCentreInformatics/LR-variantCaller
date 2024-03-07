@@ -16,7 +16,7 @@ process SNIFFLES2 {
 	// TODO: Make this pattern more generalisable or configurable.
 	script:
 	bam_path = bam.toString()
-	bam_name = bam_path.find(/(?<=_).*(?=\.bam)/)
+	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
 	//ctg_name = ctg_name[0]
 	ctg_name = bam_name
 
