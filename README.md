@@ -9,7 +9,7 @@ Singularity to manage the containers.
 
 ## Pipeline overview
 
-![Pipeline overview](pipeline.html)
+![Pipeline overview](pipeline.png)
 
 ## Installation
 
