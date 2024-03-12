@@ -10,6 +10,7 @@ process SNIFFLES2 {
 	path faidx
 
 	output:
+	tuple val(sampleID), path("${sampleID}.${ctg_name}.SV.vcf.gz"), emit: sv_vcf
 	path "*"
 	// Need to create a more specific output definition
 
@@ -27,6 +28,6 @@ process SNIFFLES2 {
 		--reference $fa \
 		--threads ${task.cpus} \
 		--output-rnames
-	bzip2 ${sampleID}.${ctg_name}.snf
+	bzip2 ${sampleID}.${ctg_name}.SV.snf
 	"""
 }

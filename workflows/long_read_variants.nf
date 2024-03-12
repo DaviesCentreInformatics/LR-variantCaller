@@ -31,8 +31,7 @@ workflow LONG_READ_VARIANTS {
 												LONG_READ_MAPPING.out.idxstat,
 												LONG_READ_MAPPING.out.flagstat,
 												LONG_READ_MAPPING.out.coverage,
-												LONG_READ_VARIANT_CALLING.out.snps,
-												LONG_READ_VARIANT_CALLING.out.svs)
+												LONG_READ_VARIANT_CALLING.out.sv_stats)
 						                	.collect()
 		//multiqc_input_ch.view()
 		MULTIQC(multiqc_input_ch)
