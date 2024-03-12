@@ -22,8 +22,8 @@ process SNIFFLES2 {
 
 	"""
 	sniffles --input $bam \
-		--vcf ${sampleID}.${ctg_name}.vcf.gz \
-		--snf ${sampleID}.${ctg_name}.snf \
+		--vcf ${sampleID}.${ctg_name}.SV.vcf.gz \
+		--snf ${sampleID}.${ctg_name}.SV.snf \
 		--reference $fa \
 		--threads ${task.cpus} \
 		--output-rnames
