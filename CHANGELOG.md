@@ -8,7 +8,7 @@ and this project adheres to
 
 ### Added
 
-- N/A
+- `vcftools` module to call stats on the `.vcf` files.
 
 ### Changed
 
