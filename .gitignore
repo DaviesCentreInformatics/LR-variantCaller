@@ -5,3 +5,5 @@ results/*
 *.fa
 *.mmi
 *.nextflow.log*
+multiqc/*
+input_data/*
