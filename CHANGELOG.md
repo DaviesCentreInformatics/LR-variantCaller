@@ -8,7 +8,7 @@ and this project adheres to
 
 ### Added
 
-- N/A
+- `coverage.nf` as a "subworkflow" to just run `NanoPlot` on raw ONT reads.
 
 ### Changed
 
