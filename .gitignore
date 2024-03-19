@@ -7,3 +7,4 @@ results/*
 *.nextflow.log*
 multiqc/*
 input_data/*
+.DS_Store
