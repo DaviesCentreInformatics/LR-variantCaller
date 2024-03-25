@@ -11,7 +11,10 @@ workflow LONG_READ_VARIANT_CALLING {
 		reference_genome_index
 
 	main:
+		// Call SNPs
 		CLAIR3(bam, reference_genome, reference_genome_index)
+
+		// Call SVs
 		SNIFFLES2(bam, reference_genome, reference_genome_index)
 	
 	emit:
