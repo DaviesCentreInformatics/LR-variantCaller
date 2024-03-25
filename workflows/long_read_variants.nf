@@ -36,6 +36,4 @@ workflow LONG_READ_VARIANTS {
 						                	.collect()
 		//multiqc_input_ch.view()
 		MULTIQC(multiqc_input_ch)
-	
-	
 }
