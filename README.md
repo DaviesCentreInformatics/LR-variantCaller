@@ -1,4 +1,18 @@
-# Davies Informatics ONT SV Calling Pipeline
+# Davies Informatics SV Calling Pipeline
+
+## Table of Contents
+
+- [Davies Informatics SV Calling Pipeline](#davies-informatics-sv-calling-pipeline)
+	- [Table of Contents](#table-of-contents)
+	- [Introduction](#introduction)
+	- [Requirements](#requirements)
+	- [Installation](#installation)
+	- [Usage](#usage)
+	- [Road Map](#road-map)
+	- [Contributing](#contributing)
+	- [License](#license)
+	- [Acknowledgements](#acknowledgements)
+	- [Contact](#contact)
 
 ## Introduction
 
@@ -7,9 +21,15 @@ Technologies (ONT) long read sequencing data. It is designed to be run on the
 University of Adelaide's HPC, Phoenix. It is written in Nextflow and uses
 Singularity to manage the containers.
 
-## Pipeline overview
+[Back to top](#)
 
-![Pipeline overview](pipeline.png)
+## Requirements
+
+- [Nextflow](https://www.nextflow.io/)
+- [Singularity](https://sylabs.io/guides/3.7/user-guide/installation.html)
+- [Docker](https://docs.docker.com/get-docker/)
+
+[Back to top](#)
 
 ## Installation
 
@@ -20,7 +40,9 @@ conda environment and install Nextflow into it.
 conda create -n nextflow python=3
 ```
 
-## Setting up for a workflow run
+[Back to top](#)
+
+## Usage
 
 To run the pipeline, first you need to make a samplesheet with the samples you
 want to run. The samplesheet should be a CSV file with the following columns:
@@ -51,8 +73,39 @@ screen -S nextflow
 
 module load Singularity
 
-nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller --samplesheet human_ont_5X_samplesheet.csv --reference $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.fa --minimap_index $PWD/reference/GCF_009914755.1_T2T-CHM13v2.0_genomic.mmi --sourceDir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 --outdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1 -profile singularity,slurm
+nextflow run 
 ```
 
 Once it's running, you can detach from the screen session by pressing `Ctrl + A`
 then `D`. You can reattach to the session by running `screen -r nextflow`.
+
+
+[Back to top](#)
+
+## Road Map
+
+- [ ] Add support for other long read technologies.
+- [ ] Add multiple SV callers
+- [ ] Add tool to identify consensus SVs.
+
+[Back to top](#)
+
+## Contributing
+
+[Back to top](#)
+
+## License
+
+[GNU-GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
+
+[Back to top](#)
+
+## Acknowledgements
+
+[Back to top](#)
+
+## Contact
+
+Maintainer: Callum MacPhillamy (callum.macphillamy@adelaide.edu.au)
+
+[Back to top](#)
