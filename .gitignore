@@ -8,3 +8,4 @@ results/*
 multiqc/*
 input_data/*
 .DS_Store
+test_results/*
