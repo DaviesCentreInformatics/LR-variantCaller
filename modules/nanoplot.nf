@@ -23,6 +23,7 @@ process NANOPLOT {
 		--outdir $outdir \
 		-p $outprefix \
 		--loglength \
-		--plots dot
+		--plots dot \
+		--verbose
 	"""
 }
