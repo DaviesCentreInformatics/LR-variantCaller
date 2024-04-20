@@ -18,6 +18,7 @@ and this project adheres to
 - `clair3.nf` now has output specified. This should now report instances where 
   the output is not generated.
 - Reformatted `README.md` to be follow a template and be more informative.
+- `clair3` now uses v1.0.7 and has new ONT models added.
 
 ### Deprecated
 
