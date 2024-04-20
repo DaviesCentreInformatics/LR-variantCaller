@@ -1,0 +1,6 @@
+model_path: /opt/models/r1041_e82_400bps_hac_v420/
+samplesheet: samplesheet.csv
+sourceDir: test_results
+reference: /Users/callummacphillamy/Projects/LR-variantCaller/input_data/reference/ARS_UCD_v2.0_chr29.fa
+minimap_index: /Users/callummacphillamy/Projects/LR-variantCaller/input_data/reference/ARS_UCD_v2.0_chr29.mmi
+skip_filtlong: true
