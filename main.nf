@@ -8,6 +8,7 @@ params.reference = null
 params.minimap_index = null
 params.sourceDir = null
 params.outdir = params.sourceDir
+params.skip_filtlong = false
 
 
 /*
@@ -45,10 +46,12 @@ N E X T F L O W  --  V A R I A N T   C A L L I N G  --  O N T
 =============================================================
 
 Pipeline Parameters:
-		Sample sheet:     ${params.samplesheet}
-		Output directory: ${params.outdir}
-		Reference genome: ${params.reference}
-		Source directory: ${params.sourceDir}
+		Sample sheet:            ${params.samplesheet}
+		Reference genome:        ${params.reference}
+		Minimap2 index:          ${params.minimap_index}
+		Clair3 model:            ${params.model_path} 
+		Source/Output directory: ${params.sourceDir}
+		Skip filtlong:           ${params.skip_filtlong}
 
 =============================================================
 """
