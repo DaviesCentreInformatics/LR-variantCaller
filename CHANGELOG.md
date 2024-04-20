@@ -9,10 +9,15 @@ and this project adheres to
 ### Added
 
 - `coverage.nf` as a "subworkflow" to just run `NanoPlot` on raw ONT reads.
+- Added `--skip_filtlong` flag to skip read filtering. 
+  Default is to run `FiltLong`.
+- 
 
 ### Changed
 
-- N/A
+- `clair3.nf` now has output specified. This should now report instances where 
+  the output is not generated.
+- Reformatted `README.md` to be follow a template and be more informative.
 
 ### Deprecated
 
