@@ -10,17 +10,18 @@ process CLAIR3 {
 	path faidx
 
 	output:
-	//path("*.vcf.gz")
-	//path("*.vcf.gz.tbi")
-	//path("*.gvcf.gz")
-	//path("*.gvcf.gz.tbi")
-	//path("log")
-	//path("*.log")
-	path "*"
+	path("*.vcf.gz")         , emit: vcf
+	path("*.vcf.gz.tbi")     , emit: vcf_tbi
+	path("*.gvcf.gz")        , emit: gvcf
+	path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
+	path("log")              , emit: log_dir
+	path("*.log")            , emit: log
+	//path "*"
 
 
 	script:
-	model_path = "/opt/models/r941_prom_hac_g238/"
+	//model_path = "/opt/models/r941_prom_hac_g238/"
+	model_path = params.model_path
 	bam_path = bam.toString()
 	//ctg_pattern = "$params.chrom_pattern"
 	//ctg_name = bam_path =~ ctg_pattern
