@@ -5,6 +5,7 @@ include { LONG_READ_MAPPING         } from '../subworkflows/long_read_mapping'
 include { MULTIQC                   } from '../modules/multiqc'
 include { SAMTOOLS_FAIDX            } from '../modules/samtools'
 include { LONG_READ_VARIANT_CALLING } from '../subworkflows/long_read_variant_calling'
+include { BCFTOOLS_STATS            } from '../modules/bcftools'
 
 /*
  * DEFINE THE MAIN WORKFLOW
@@ -22,6 +23,12 @@ workflow LONG_READ_VARIANTS {
 		(fasta, fai) = SAMTOOLS_FAIDX(params.reference)
 
 		LONG_READ_VARIANT_CALLING(bams, fasta, fai)
+
+		svs_to_merge = Channel.empty()
+		svs_to_merge.mix(LONG_READ_VARIANT_CALLING.out.res_tuple,
+												LONG_READ_VARIANT_CALLING.out.res_tuple,
+												LONG_READ_VARIANT_CALLING.out.res_tuple,
+												LONG_READ_VARIANT_CALLING.out.res_tuple).view()
 	
 		reports_and_logs = Channel.empty()
 		//reports_and_logs.view()
@@ -31,8 +38,7 @@ workflow LONG_READ_VARIANTS {
 												LONG_READ_MAPPING.out.idxstat,
 												LONG_READ_MAPPING.out.flagstat,
 												LONG_READ_MAPPING.out.coverage,
-												LONG_READ_VARIANT_CALLING.out.snps,
-												LONG_READ_VARIANT_CALLING.out.svs)
+												LONG_READ_VARIANT_CALLING.out.snps)
 						                	.collect()
 		//multiqc_input_ch.view()
 		MULTIQC(multiqc_input_ch)
