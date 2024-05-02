@@ -9,3 +9,5 @@ multiqc/*
 input_data/*
 .DS_Store
 test_results/*
+TEST_WORKFLOW/*
+test_sample/*
