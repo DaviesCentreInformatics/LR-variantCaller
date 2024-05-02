@@ -24,6 +24,6 @@ process FILTLONG {
 	filtlong --min_length 200 ${fastq} | bgzip > ${sampleID}.trimmed.fastq.gz
 	cp .command.log ${sampleID}.filtlong.log
 	cp .command.err ${sampleID}.filtlong.err
-	cat filtlong --version > version.txt
+	filtlong --version > version.txt
 	"""
 }
