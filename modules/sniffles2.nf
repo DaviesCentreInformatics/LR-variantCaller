@@ -2,7 +2,7 @@ process SNIFFLES2 {
 	tag "$sampleID"
 	label "process_medium", "error_retry"
 
-	publishDir "$params.outdir/variants/SVs/$sampleID", mode: 'copy'
+	publishDir "$params.outdir/variants/SVs/sniffles/$sampleID", mode: 'copy'
 
 	input:
 	tuple val(sampleID), path(bam), path(bai)
@@ -10,7 +10,9 @@ process SNIFFLES2 {
 	path faidx
 
 	output:
-	path "*"
+	path "*.snf.bz2", emit: snf
+	path "*.vcf.gz", emit: snf_vcf
+	tuple val(sampleID), path("*.vcf.gz"), emit: res_tuple
 	// Need to create a more specific output definition
 
 	// TODO: Make this pattern more generalisable or configurable.
