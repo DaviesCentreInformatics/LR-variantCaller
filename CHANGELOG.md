@@ -8,10 +8,37 @@ and this project adheres to
 
 ### Added
 
+- N/A
+
+### Changed
+
+- N/A
+
+### Deprecated
+
+- N/A
+
+### Removed
+
+- N/A
+
+### Fixed
+
+- N/A
+
+### Security
+
+- N/A
+
+## [v1.1.0](https://github.com/DaviesCentreInformatics/LR-variantCaller/releases/tag/v1.1.0)
+
+### Added
+
 - `coverage.nf` as a "subworkflow" to just run `NanoPlot` on raw ONT reads.
-- Added `--skip_filtlong` flag to skip read filtering. 
-  Default is to run `FiltLong`.
-- 
+- Added 3 additional SV callers, `SVIM`, `DYSGU` and `CUTESV` to the pipeline.
+- Added `BCFtools stats` process to call stats on the variants from each SV and
+  SNP caller.
+- Added 'modkit.nf` to perform pileup analysis of methyl tags.
 
 ### Changed
 
@@ -19,6 +46,7 @@ and this project adheres to
   the output is not generated.
 - Reformatted `README.md` to be follow a template and be more informative.
 - `clair3` now uses v1.0.7 and has new ONT models added.
+- Modified `minimap2.nf` to accept `.bam` file as input for methylation calling.
 
 ### Deprecated
 
