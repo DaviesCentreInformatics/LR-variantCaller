@@ -16,7 +16,12 @@ workflow LONG_READ_VARIANT_CALLING {
 
 	main:
 		// Call SNPs
-		CLAIR3(bam, reference_genome, reference_genome_index)
+		if (params.skip_snps == false) {
+			CLAIR3(bam, reference_genome, reference_genome_index)
+			snps = CLAIR3.out.gvcf
+		} else {
+			snps = Channel.empty()
+		}
 
 		// Call SVs
 		SNIFFLES2(bam, reference_genome, reference_genome_index)
@@ -25,7 +30,7 @@ workflow LONG_READ_VARIANT_CALLING {
 		DYSGU(bam, reference_genome, reference_genome_index)
 	
 	emit:
-		snps = CLAIR3.out.gvcf
+		snps
 		sniffles  = SNIFFLES2.out.res_tuple
 		svim = SVIM.out.res_tuple
 		cutesv = CUTESV.out.res_tuple
