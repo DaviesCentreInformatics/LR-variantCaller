@@ -51,7 +51,7 @@ Pipeline Parameters:
 		Minimap2 index:          ${params.minimap_index}
 		Clair3 model:            ${params.model_path} 
 		Source/Output directory: ${params.sourceDir}
-		Skip filtlong:           ${params.skip_filtlong}
+		Skip SNP calling:        ${params.skip_snps}
 
 =============================================================
 """
