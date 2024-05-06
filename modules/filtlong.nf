@@ -7,23 +7,31 @@ process FILTLONG {
 	publishDir "$params.outdir/filtlong", mode: 'copy',
 		saveAs: { filename -> 
 			if (filename.endsWith('.log') || filename.endsWith('.err')) "logs/${filename}"
-			else filename }
+			else null }
 
 	input:
-	tuple val(sampleID), path(fastq)
+	tuple val(sampleID), path(bam)
 
 	output:
-	tuple val(sampleID), path("${sampleID}.trimmed.fastq.gz") , emit: result_tuple
-	path "${sampleID}.trimmed.fastq.gz"                       , emit: trimmed_fastq
-	path "${sampleID}.filtlong.log"                           , emit: log
-	path "${sampleID}.filtlong.err"                           , emit: err
-	path "version.txt"                                        , emit: version
+	tuple val(sampleID), path("${sampleID}.filtered.bam") , emit: result_tuple
+	// path "${sampleID}.trimmed.fastq.gz"                       , emit: trimmed_fastq
+	// path "${sampleID}.filtlong.log"                           , emit: log
+	// path "${sampleID}.filtlong.err"                           , emit: err
+	// path "version.txt"                                        , emit: version
 	
 	script:
 	"""
-	filtlong --min_length 200 ${fastq} | bgzip > ${sampleID}.trimmed.fastq.gz
-	cp .command.log ${sampleID}.filtlong.log
-	cp .command.err ${sampleID}.filtlong.err
-	filtlong --version > version.txt
+	echo "Converting ${bam} to fastq..." 
+	samtools fastq --verbosity 3 -@ ${task.cpus} ${bam} | pigz - > ${sampleID}.fastq.gz
+	
+	echo "Filtering ${sampleID}.fastq..."
+	filtlong --min_length 200 ${sampleID}.fastq.gz | \
+	seqkit seq -j ${task.cpus} -n | cut -f1 -d ' ' \
+		> ${sampleID}.filtered_readnames.txt
+	
+	echo "Taking filtered reads from ${bam}..."
+	samtools view -@ ${task.cpus} -b \
+		-N ${sampleID}.filtered_readnames.txt ${bam} \
+		> ${sampleID}.filtered.bam
 	"""
 }
