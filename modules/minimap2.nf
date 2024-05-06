@@ -35,16 +35,24 @@ process MINIMAP2 {
 	publishDir "$params.outdir/minimap2", mode: 'copy'
 
 	input:
-	tuple val( sampleID ), path( fastq )
+	tuple val( sampleID ), path( reads )
 	path reference
 
 	output:
 	tuple val( sampleID ), path( "${sampleID}.sorted.bam" ), path( "${sampleID}.sorted.bam.bai" ), emit: mapped_tuple
 
 	script:
-	"""
-	minimap2 -ax map-ont --MD -t $task.cpus $reference $fastq | samtools sort -@ $task.cpus -o ${sampleID}.sorted.bam
+	if (reads.toString().endsWith(".bam")) {
+		"""
+		dorado aligner -t $task.cpus $reference $reads | samtools sort -@ $task.cpus -o ${sampleID}.sorted.bam
 
-	samtools index ${sampleID}.sorted.bam
-	"""
+		samtools index ${sampleID}.sorted.bam
+		"""
+	} else {
+		"""
+		minimap2 -ax map-ont --MD -t $task.cpus $reference $reads | samtools sort -@ $task.cpus -o ${sampleID}.sorted.bam
+
+		samtools index ${sampleID}.sorted.bam
+		"""
+	}
 }
