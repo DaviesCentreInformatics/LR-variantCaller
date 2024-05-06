@@ -11,7 +11,7 @@ process DYSGU {
 
 	output:
 	path "*.vcf.gz", emit: dys_vcf
-	tuple val(sampleID), path("*.vcf.gz"), emit: res_tuple
+	tuple val(sampleID), path("*.dysgu.vcf.gz"), emit: res_tuple
 	
 	script:
 	bam_path = bam.toString()
@@ -27,6 +27,6 @@ process DYSGU {
 		-c \
 		${fa} \
 		\$temp_dir \
-		${bam} | bgzip -@ ${task.cpus} - > ${sampleID}.${ctg_name}.vcf.gz
+		${bam} | bgzip -@ ${task.cpus} - > ${sampleID}_${ctg_name}.dysgu.vcf.gz
 	"""
 }
