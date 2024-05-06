@@ -4,22 +4,24 @@ process NANOPLOT {
 
 	publishDir "$params.outdir/nanoplot", mode: 'copy',
 		saveAs: { filename -> 
-			if (filename.indexOf("trimmed") > 0 ) "trimmed/$filename"
+			if (filename.indexOf("filtered") > 0 ) "filtered/$filename"
 			else "raw/$filename" }
 
 	input:
-	tuple val(sampleID), path(fastq)
+	tuple val(sampleID), path(reads)
 
 	output:
-	path "${sampleID}${fastq.toString().indexOf("trimmed") > 0 ? "_trimmed" : "_raw"}/*", emit: report
+	path "${sampleID}${reads.toString().indexOf("filtered") > 0 ? "_filtered" : "_raw"}/*", emit: report
 
 	script:
-	outdir = "${sampleID}${fastq.toString().indexOf("trimmed") > 0 ? "_trimmed" : "_raw"}"
-	outprefix = "${sampleID}${fastq.toString().indexOf("trimmed") > 0 ? "_trimmed_" : "_raw_"}"
+	outdir = "${sampleID}${reads.toString().indexOf("filtered") > 0 ? "_filtered" : "_raw"}"
+	outprefix = "${sampleID}${reads.toString().indexOf("filtered") > 0 ? "_filtered_" : "_raw_"}"
+
+	hts_type = reads.toString().indexOf("fastq") > 0 ? "--fastq" : "--ubam"
 
 	"""
 	NanoPlot -t ${task.cpus} \
-		--fastq ${fastq} \
+		${hts_type} ${reads} \
 		--outdir $outdir \
 		-p $outprefix \
 		--loglength \
