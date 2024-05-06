@@ -11,8 +11,8 @@ process SNIFFLES2 {
 
 	output:
 	path "*.snf.bz2", emit: snf
-	path "*.vcf.gz", emit: snf_vcf
-	tuple val(sampleID), path("*.vcf.gz"), emit: res_tuple
+	path "*.sniffles.vcf.gz", emit: snf_vcf
+	tuple val(sampleID), path("*.sniffles.vcf.gz"), emit: res_tuple
 	// Need to create a more specific output definition
 
 	// TODO: Make this pattern more generalisable or configurable.
@@ -24,11 +24,11 @@ process SNIFFLES2 {
 
 	"""
 	sniffles --input $bam \
-		--vcf ${sampleID}.${ctg_name}.vcf.gz \
-		--snf ${sampleID}.${ctg_name}.snf \
+		--vcf ${sampleID}_${ctg_name}.sniffles.vcf.gz \
+		--snf ${sampleID}_${ctg_name}.snf \
 		--reference $fa \
 		--threads ${task.cpus} \
 		--output-rnames
-	bzip2 ${sampleID}.${ctg_name}.snf
+	bzip2 ${sampleID}_${ctg_name}.snf
 	"""
 }
