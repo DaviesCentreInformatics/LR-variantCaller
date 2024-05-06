@@ -2,25 +2,23 @@ process BCFTOOLS_STATS {
 	tag "$sampleID"
 	label "process_low"
 
-	publishDir "$params.outdir/bcftools/stats", mode: 'copy',
-		saveAs: { filename -> 
-			if (filename.indexOf("clair3") > 0 ) "clair3/$filename"
-			else if (filename.indexOf("sniffles2") > 0 ) "sniffles2/$filename"
-			else if (filename.indexOf("svim") > 0 ) "svim/$filename"
-			else if (filename.indexOf("cutesv") > 0 ) "cutesv/$filename"
-			else if (filename.indexOf("dysgu") > 0) "dysgu/$filename"
-			else null }
+	publishDir "$params.outdir/bcftools/stats", mode: 'copy'
 
 	input:
-	path(vcf)
+	tuple val(sampleID), path(vcf)
 
 	output:
-	path "${sampleID}.stats", emit: stats
-
+	path "*.txt", emit: stats
 
 	script:
-	vcf_path = 
+	outname = "${vcf.baseName}".replace(".vcf.gz", "")
 	"""
-	bcftools stats -@ ${task.cpus} ${bam} > ${sampleID}.stats
+	if [[ ! "${vcf}" =~ "_MT" ]]; then
+		bcftools stats --threads ${task.cpus} \
+		${vcf} > ${outname}.txt
+	
+	else
+		echo "Skipping ${sampleID} MT file." > ${outname}.txt
+	fi
 	"""
 }
