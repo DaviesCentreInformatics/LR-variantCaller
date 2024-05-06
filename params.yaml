@@ -3,4 +3,4 @@ samplesheet: samplesheet.csv
 sourceDir: TEST_WORKFLOW
 reference: /Users/callummacphillamy/Projects/REFERENCES/ARS_UCD2.0/ARS_UCD_v2.0.fa
 minimap_index: /Users/callummacphillamy/Projects/REFERENCES/ARS_UCD2.0/ARS_UCD_v2.0.mmi
-skip_filtlong: false
+skip_snps: true
