@@ -11,3 +11,4 @@ input_data/*
 test_results/*
 TEST_WORKFLOW/*
 test_sample/*
+TEST_ONLY_SVS/*
