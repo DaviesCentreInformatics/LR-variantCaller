@@ -1,6 +1,8 @@
-model_path: /opt/models/r1041_e82_400bps_hac_v420/
+model_path: /opt/models/r1041_e82_400bps_sup_v420/
 samplesheet: samplesheet.csv
 sourceDir: TEST_WORKFLOW
 reference: /Users/callummacphillamy/Projects/REFERENCES/ARS_UCD2.0/ARS_UCD_v2.0.fa
 minimap_index: /Users/callummacphillamy/Projects/REFERENCES/ARS_UCD2.0/ARS_UCD_v2.0.mmi
-skip_snps: true
+skip_snps: false
+methylation: false
+only_svs: false
