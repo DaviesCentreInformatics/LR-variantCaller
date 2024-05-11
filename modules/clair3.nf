@@ -12,7 +12,7 @@ process CLAIR3 {
 	output:
 	path("*.vcf.gz")         , emit: vcf
 	path("*.vcf.gz.tbi")     , emit: vcf_tbi
-	path("*.gvcf.gz")        , emit: gvcf
+	tuple val(sampleID), path("*.gvcf.gz")        , emit: gvcf
 	path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
 	path("log")              , emit: log_dir
 	path("*.log")            , emit: log
