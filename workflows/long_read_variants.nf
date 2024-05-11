@@ -23,12 +23,12 @@ workflow LONG_READ_VARIANTS {
 	main:	
 		LONG_READ_PREPROCESSING(samples)
 	
-		bams = LONG_READ_MAPPING(LONG_READ_PREPROCESSING.out.filtered_reads,
-	                  params.minimap_index).mapped_reads
+		bam = LONG_READ_MAPPING(LONG_READ_PREPROCESSING.out.filtered_reads,
+	                  params.minimap_index).mapped
 		//bams.view()
 		(fasta, fai) = SAMTOOLS_FAIDX(params.reference)
 
-		LONG_READ_VARIANT_CALLING(bams, fasta, fai)
+		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
 
 		//svs_to_merge = Channel.empty()
 		// svs_to_merge = Channel.empty()
@@ -37,7 +37,6 @@ workflow LONG_READ_VARIANTS {
 		// 										LONG_READ_VARIANT_CALLING.out.svim,
 		// 										LONG_READ_VARIANT_CALLING.out.cutesv,
 		// 										LONG_READ_VARIANT_CALLING.out.dysgu).groupTuple(by: 0)
-		MODKIT(bams, fasta, fai)
 		
 	
 		snp_stats    = SNP_STATS(LONG_READ_VARIANT_CALLING.out.snps)
@@ -54,8 +53,7 @@ workflow LONG_READ_VARIANTS {
 			LONG_READ_MAPPING.out.stats,
 			LONG_READ_MAPPING.out.idxstat,
 			LONG_READ_MAPPING.out.flagstat,
-			LONG_READ_MAPPING.out.coverage,
-			MODKIT.out.bedMethyl)
+			LONG_READ_MAPPING.out.coverage)
 			.collect()
 		//multiqc_input_ch.view()
 		MULTIQC(multiqc_input_ch)
