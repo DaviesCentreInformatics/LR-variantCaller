@@ -73,7 +73,18 @@ screen -S nextflow
 
 module load Singularity
 
-nextflow run 
+nextflow run main.nf -params-file params.yaml -profile singularity,slurm 
+```
+
+Alternatively, you can provide a samplesheet of mapped bam files and call 
+SVs starting from there.
+
+``` bash
+nextflow run main.nf --only_svs \
+	--svim \
+	--cutesv \
+	--dysgu \
+	-params-file params.yaml -profile singularity,slurm 
 ```
 
 Once it's running, you can detach from the screen session by pressing `Ctrl + A`
@@ -85,7 +96,7 @@ then `D`. You can reattach to the session by running `screen -r nextflow`.
 ## Road Map
 
 - [ ] Add support for other long read technologies.
-- [ ] Add multiple SV callers
+- [x] Add multiple SV callers
 - [ ] Add tool to identify consensus SVs.
 
 [Back to top](#)
