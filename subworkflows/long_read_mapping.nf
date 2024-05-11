@@ -26,10 +26,11 @@ workflow LONG_READ_MAPPING {
 		SAMTOOLS_FLAGSTAT(mapped)
 		SAMTOOLS_IDXSTATS(mapped)
 		SAMTOOLS_STATS(mapped)
-		SPLITBAM(mapped)
+		//SPLITBAM(mapped)
 		
 	emit:
-		mapped_reads = SPLITBAM.out.split_bam.transpose()
+		mapped
+		//mapped_reads = SPLITBAM.out.split_bam.transpose()
 		coverage = MOSDEPTH.out
 		flagstat = SAMTOOLS_FLAGSTAT.out
 		idxstat = SAMTOOLS_IDXSTATS.out
