@@ -1,6 +1,8 @@
 process MODKIT {
-	tag "$sampleID"
+    tag "$sampleID"
 	label "process_medium", "error_retry"
+
+	debug true
 
 	publishDir "$params.outdir/modkit/$sampleID", mode: 'copy'
 
@@ -20,8 +22,6 @@ process MODKIT {
 	ctg_name = bam_name
 
 	"""
-	temp_dir="/tmp/\$RANDOM"
-
 	modkit pileup --log-filepath ${sampleID}.${ctg_name}.modkit.log \
 		--region ${ctg_name} \
 		-t ${task.cpus} \
