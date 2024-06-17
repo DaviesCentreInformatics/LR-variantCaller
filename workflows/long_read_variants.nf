@@ -5,7 +5,6 @@ include { LONG_READ_MAPPING             } from '../subworkflows/long_read_mappin
 include { MULTIQC                       } from '../modules/multiqc'
 include { SAMTOOLS_FAIDX                } from '../modules/samtools'
 include { LONG_READ_VARIANT_CALLING     } from '../subworkflows/long_read_variant_calling'
-include { SURVIVOR                      } from '../modules/survivor'
 include { BCFTOOLS_STATS as SNP_STATS   } from '../modules/bcftools'
 include { BCFTOOLS_STATS as SNIF_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as SVIM_STATS  } from '../modules/bcftools'
