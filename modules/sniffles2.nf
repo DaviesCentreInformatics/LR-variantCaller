@@ -20,15 +20,15 @@ process SNIFFLES2 {
 	bam_path = bam.toString()
 	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
 	//ctg_name = ctg_name[0]
-	ctg_name = bam_name
+	//ctg_name = bam_name
 
 	"""
 	sniffles --input $bam \
-		--vcf ${sampleID}_${ctg_name}.sniffles.vcf.gz \
-		--snf ${sampleID}_${ctg_name}.snf \
+		--vcf ${sampleID}.sniffles.vcf.gz \
+		--snf ${sampleID}.snf \
 		--reference $fa \
 		--threads ${task.cpus} \
 		--output-rnames
-	bzip2 ${sampleID}_${ctg_name}.snf
+	bzip2 ${sampleID}.snf
 	"""
 }

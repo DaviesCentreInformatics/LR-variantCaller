@@ -14,10 +14,10 @@ process DYSGU {
 	tuple val(sampleID), path("*.dysgu.vcf.gz"), emit: res_tuple
 	
 	script:
-	bam_path = bam.toString()
-	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
-	//ctg_name = ctg_name[0]
-	ctg_name = bam_name
+	// bam_path = bam.toString()
+	// bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
+	// //ctg_name = ctg_name[0]
+	// ctg_name = bam_name
 
 	"""
 	temp_dir="/tmp/\$RANDOM"
@@ -27,6 +27,6 @@ process DYSGU {
 		-c \
 		${fa} \
 		\$temp_dir \
-		${bam} | bzip2 - > ${sampleID}_${ctg_name}.dysgu.vcf.gz
+		${bam} | bzip2 - > ${sampleID}.dysgu.vcf.bz2
 	"""
 }

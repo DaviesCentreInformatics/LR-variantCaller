@@ -12,22 +12,21 @@ process MODKIT {
 	path faidx
 
 	output:
-	path "*.bedMethyl", emit: bedMethyl
+	path "*.bedMethyl.bz2", emit: bedMethyl
 	path "*.modkit.log", emit: modkit_log
 	
 	script:
-	bam_path = bam.toString()
-	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
-	//ctg_name = ctg_name[0]
-	ctg_name = bam_name
+	// bam_path = bam.toString()
+	// bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
+	// //ctg_name = ctg_name[0]
+	// ctg_name = bam_name
 
 	"""
-	modkit pileup --log-filepath ${sampleID}.${ctg_name}.modkit.log \
-		--region ${ctg_name} \
+	modkit pileup --log-filepath ${sampleID}.modkit.log \
 		-t ${task.cpus} \
 		--ref ${fa} \
 		--preset traditional \
 		${bam} \
-		${sampleID}.${ctg_name}.bedMethyl
+		${sampleID}.bedMethyl.bz2
 	"""
 }
