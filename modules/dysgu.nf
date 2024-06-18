@@ -27,6 +27,6 @@ process DYSGU {
 		-c \
 		${fa} \
 		\$temp_dir \
-		${bam} | bgzip -@ ${task.cpus} - > ${sampleID}_${ctg_name}.dysgu.vcf.gz
+		${bam} | bzip2 - > ${sampleID}_${ctg_name}.dysgu.vcf.gz
 	"""
 }

@@ -33,6 +33,6 @@ process CUTESV {
 		${sampleID}_${ctg_name}.cuteSV.vcf \
 		.
 
-	bgzip -@ ${task.cpus} ${sampleID}_${ctg_name}.cuteSV.vcf
+	bzip2 ${sampleID}_${ctg_name}.cuteSV.vcf
 	"""
 }

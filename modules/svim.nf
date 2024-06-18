@@ -26,6 +26,6 @@ process SVIM {
 		--insertion_sequences
 		
 	mv variants.vcf ${sampleID}_${ctg_name}.svim.vcf
-	bgzip -@ ${task.cpus} ${sampleID}_${ctg_name}.svim.vcf
+	bzip2 ${sampleID}_${ctg_name}.svim.vcf
 	"""
 }
