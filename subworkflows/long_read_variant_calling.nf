@@ -22,7 +22,7 @@ workflow LONG_READ_VARIANT_CALLING {
 
 		if (params.methylation) {
 			// Call methylation
-			METH(split_bams, reference_genome, reference_genome_index)
+			METH(bam, reference_genome, reference_genome_index)
 			meth = METH.out.bedMethyl
 		} else {
 			meth = Channel.empty()
