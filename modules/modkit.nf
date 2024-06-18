@@ -12,7 +12,7 @@ process MODKIT {
 	path faidx
 
 	output:
-	path "*.bedMethyl.bz2", emit: bedMethyl
+	path "*.bedMethyl", emit: bedMethyl
 	path "*.modkit.log", emit: modkit_log
 	
 	script:
@@ -27,6 +27,6 @@ process MODKIT {
 		--ref ${fa} \
 		--preset traditional \
 		${bam} \
-		${sampleID}.bedMethyl.bz2
+		${sampleID}.bedMethyl
 	"""
 }
