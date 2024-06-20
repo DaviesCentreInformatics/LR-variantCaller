@@ -78,10 +78,10 @@ process SAMTOOLS_SPLITBAM {
 
 	shell:
     '''
-    samtools idxstats -@ ${task.cpus} !{bam} | cut -f 1 | grep -E '^([0-9]{1,2}|X|Y|M|MT)$' > !{sampleID}.chromosomes.txt
+    samtools idxstats -@ !{task.cpus} !{bam} | cut -f 1 | grep -E '^([0-9]{1,2}|X|Y|M|MT)$' > !{sampleID}.chromosomes.txt
     while IFS= read -r line; do
-        samtools view -@ ${task.cpus} -b !{bam} ${line} > !{sampleID}_${line}.bam ;
-        samtools index -@ ${task.cpus} !{sampleID}_${line}.bam
+        samtools view -@ !{task.cpus} -b !{bam} !{line} > !{sampleID}_!{line}.bam ;
+        samtools index -@ !{task.cpus} !{sampleID}_!{line}.bam
     done < !{sampleID}.chromosomes.txt
     '''
 }
