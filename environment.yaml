@@ -1,0 +1,19 @@
+name: svcaller
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - sniffles=2.2
+  - svim=2.0.0
+  - bzip2
+  - samtools=1.20
+  - bcftools=1.20
+  - multiqc=1.19
+  - nanoplot=1.42.0
+  - minimap2=2.28
+  - dysgu=1.6.2
+  - cutesv=2.1.0
+  - seqkit=2.8.1
+  - filtlong=0.2.1
+  - mosdepth=0.3.8
