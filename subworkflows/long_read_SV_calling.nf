@@ -16,8 +16,8 @@ workflow LONG_READ_SV_CALLING {
 
 	main:
 
-		bam = SPLITBAM(mapped).split_bam.transpose()
-
+		//bam = SPLITBAM(mapped).split_bam.transpose()
+		bam = mapped
 		// Call SVs
 		if (params.sniffles) {
 			sniffles = SNIFFLES2(bam, reference_genome, reference_genome_index).res_tuple
