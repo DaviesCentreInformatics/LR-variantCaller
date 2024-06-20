@@ -4,7 +4,6 @@ include { SNIFFLES2                     } from '../modules/sniffles2'
 include { SVIM                          } from '../modules/svim'
 include { CUTESV                        } from '../modules/cutesv'
 include { DYSGU                         } from '../modules/dysgu'
-include { SAMTOOLS_SPLITBAM as SPLITBAM } from '../modules/samtools'
 
 
 
