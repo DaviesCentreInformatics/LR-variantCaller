@@ -27,7 +27,7 @@ workflow LONG_READ_VARIANTS {
 		//bams.view()
 		// (fasta, fai) = SAMTOOLS_FAIDX(params.reference)
 		fasta = params.reference
-		fai = params.reference + ".fai"
+		fai = params.reference_idx
 
 		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
 
