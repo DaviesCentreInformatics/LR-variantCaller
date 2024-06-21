@@ -25,7 +25,9 @@ workflow LONG_READ_VARIANTS {
 		bam = LONG_READ_MAPPING(LONG_READ_PREPROCESSING.out.filtered_reads,
 	                  params.minimap_index).mapped
 		//bams.view()
-		(fasta, fai) = SAMTOOLS_FAIDX(params.reference)
+		// (fasta, fai) = SAMTOOLS_FAIDX(params.reference)
+		fasta = params.reference
+		fai = params.reference + ".fai"
 
 		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
 
