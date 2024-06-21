@@ -80,10 +80,11 @@ if (params.only_svs) {
 include { LONG_READ_VARIANTS as DLRVC      } from './workflows/long_read_variants'
 
 include { SAMTOOLS_FAIDX                   } from './modules/samtools'
+include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
 
 workflow {
 	if (params.only_svs) {
-		include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
+		
 		(fasta, fai) = SAMTOOLS_FAIDX(params.reference)
 		params.sniffles = true
 		params.svim = false
