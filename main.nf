@@ -53,6 +53,7 @@ N E X T F L O W  --  V A R I A N T   C A L L I N G  --  O N T
 Pipeline Parameters:
 		Sample sheet:            ${params.samplesheet}
 		Reference genome:        ${params.reference}
+		Reference genome index:  ${params.reference_idx}
 		Minimap2 index:          ${params.minimap_index}
 		Clair3 model:            ${params.model_path} 
 		Source/Output directory: ${params.sourceDir}
