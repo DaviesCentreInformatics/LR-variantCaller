@@ -5,6 +5,7 @@ nextflow.enable.dsl=2
  */
 params.samplesheet = null
 params.reference = null
+params.reference_idx = null
 params.minimap_index = null
 params.sourceDir = null
 params.outdir = params.sourceDir
@@ -26,6 +27,10 @@ if (params.minimap_index == null) {
 
 if (params.reference == null) {
 	error "Please provide a reference genome using the `--reference` flag"
+	System.exit(1)
+}
+if (params.reference_idx == null) {
+	error "Please provide a reference genome index using the `--reference_idx` flag"
 	System.exit(1)
 }
 
@@ -78,14 +83,16 @@ if (params.only_svs) {
  * Import the workflow from the workflows directory
  */
 include { LONG_READ_VARIANTS as DLRVC      } from './workflows/long_read_variants'
-
 include { SAMTOOLS_FAIDX                   } from './modules/samtools'
 include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
 
 workflow {
 	if (params.only_svs) {
 		
-		(fasta, fai) = SAMTOOLS_FAIDX(params.reference)
+		// (fasta, fai) = SAMTOOLS_FAIDX(params.reference)
+		fasta = params.reference
+		fai = params.reference_idx
+
 		params.sniffles = true
 		params.svim = false
 		params.cutesv = true
