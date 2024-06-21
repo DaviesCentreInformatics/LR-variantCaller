@@ -10,7 +10,7 @@ process SVIM {
 	path faidx
 
 	output:
-	path "*.svim.vcf.bz2", emit: svim_vcf
+	path "*.svim.vcf.gz", emit: svim_vcf
 	tuple val(sampleID), path("*.vcf.bz2"), emit: res_tuple
 
 	script:
@@ -26,6 +26,6 @@ process SVIM {
 		--insertion_sequences
 		
 	mv variants.vcf ${sampleID}.svim.vcf
-	bzip2 ${sampleID}.svim.vcf
+	pigz -p ${task.cpus} ${sampleID}.svim.vcf
 	"""
 }

@@ -10,7 +10,7 @@ process CUTESV {
 	path faidx
 
 	output:
-	path "*.cuteSV.vcf.bz2", emit: cu_vcf
+	path "*.cuteSV.vcf.gz", emit: cu_vcf
 	tuple val(sampleID), path("*.vcf.bz2"), emit: res_tuple
 
 	script:
@@ -33,6 +33,6 @@ process CUTESV {
 		${sampleID}.cuteSV.vcf \
 		.
 
-	bzip2 ${sampleID}.cuteSV.vcf
+	pigz -p ${task.cpus} ${sampleID}.cuteSV.vcf
 	"""
 }
