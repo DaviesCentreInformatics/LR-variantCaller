@@ -33,6 +33,6 @@ process CUTESV {
 		${sampleID}.cuteSV.vcf \
 		.
 
-	gzip ${task.cpus} ${sampleID}.cuteSV.vcf
+	gzip ${sampleID}.cuteSV.vcf
 	"""
 }
