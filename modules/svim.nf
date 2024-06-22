@@ -11,7 +11,7 @@ process SVIM {
 
 	output:
 	path "*.svim.vcf.gz", emit: svim_vcf
-	tuple val(sampleID), path("*.vcf.bz2"), emit: res_tuple
+	tuple val(sampleID), path("*.vcf.gz"), emit: res_tuple
 
 	script:
 	// bam_path = bam.toString()
