@@ -26,6 +26,6 @@ process SVIM {
 		--insertion_sequences
 		
 	mv variants.vcf ${sampleID}.svim.vcf
-	pigz -p ${task.cpus} ${sampleID}.svim.vcf
+	gzip -p ${task.cpus} ${sampleID}.svim.vcf
 	"""
 }

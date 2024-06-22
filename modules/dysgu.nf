@@ -27,6 +27,6 @@ process DYSGU {
 		-c \
 		${fa} \
 		\$temp_dir \
-		${bam} | pigz - > ${sampleID}.dysgu.vcf.gz
+		${bam} | gzip - > ${sampleID}.dysgu.vcf.gz
 	"""
 }
