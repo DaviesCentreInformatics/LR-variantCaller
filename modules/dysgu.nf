@@ -20,7 +20,7 @@ process DYSGU {
 	// ctg_name = bam_name
 
 	"""
-	temp_dir=$params.temp_dir
+	temp_dir=$params.temp_dir/${sampleID}_dysgu
 
 	dysgu call --mode nanopore \
 		-p ${task.cpus} \
