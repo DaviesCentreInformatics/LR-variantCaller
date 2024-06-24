@@ -22,7 +22,7 @@ process FILTLONG {
 	script:
 	"""
 	echo "Converting ${bam} to fastq..." 
-	samtools fastq --verbosity 3 -@ ${task.cpus} ${bam} | pigz - > ${sampleID}.fastq.gz
+	samtools fastq --verbosity 3 -@ ${task.cpus} ${bam} | pigz -p ${task.cpus} - > ${sampleID}.fastq.gz
 	
 	echo "Filtering ${sampleID}.fastq..."
 	filtlong --min_length 200 ${sampleID}.fastq.gz | \
