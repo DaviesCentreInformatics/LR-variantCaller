@@ -29,7 +29,7 @@ process CLAIR3 {
 	//ctg_name = ctg_name[0]
 	ctg_name = bam_name
 	"""
-	clair3_temp=`mktemp -d \${params.temp_dir}/CLAIRXXXXXX`
+	clair3_temp=`mktemp -d !{params.temp_dir}/CLAIRXXXXXX`
 	run_clair3.sh --bam_fn ${bam} \
 		--ref_fn=${fa} \
 		--threads=${task.cpus} \
