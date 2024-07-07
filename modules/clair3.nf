@@ -10,13 +10,13 @@ process CLAIR3 {
 	path faidx
 
 	output:
-	path("*.vcf.gz")         , emit: vcf
-	path("*.vcf.gz.tbi")     , emit: vcf_tbi
-	tuple val(sampleID), path("*.gvcf.gz")        , emit: gvcf
-	path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
-	path("log")              , emit: log_dir
-	path("*.log")            , emit: log
-	//path "*"
+	// path("*.vcf.gz")         , emit: vcf
+	// path("*.vcf.gz.tbi")     , emit: vcf_tbi
+	// tuple val(sampleID), path("*.gvcf.gz")        , emit: gvcf
+	// path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
+	// path("log")              , emit: log_dir
+	// path("*.log")            , emit: log
+	path "*"
 
 
 	script:
@@ -28,6 +28,7 @@ process CLAIR3 {
 	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y|MT|M)(?=\.bam)/)
 	//ctg_name = ctg_name[0]
 	ctg_name = bam_name
+	
 	"""
 	work_dir="${params.temp_dir}"
 	echo "\${work_dir}"

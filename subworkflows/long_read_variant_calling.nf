@@ -31,7 +31,7 @@ workflow LONG_READ_VARIANT_CALLING {
 		// Call SNPs
 		if (params.skip_snps == false) {
 			CLAIR3(split_bams, reference_genome, reference_genome_index)
-			snps = CLAIR3.out.gvcf
+			// snps = CLAIR3.out.gvcf
 		} else {
 			snps = Channel.empty()
 		}
@@ -43,7 +43,7 @@ workflow LONG_READ_VARIANT_CALLING {
 		DYSGU(bam, reference_genome, reference_genome_index)
 	
 	emit:
-		snps
+		// snps
 		meth
 		sniffles  = SNIFFLES2.out.res_tuple
 		svim = SVIM.out.res_tuple

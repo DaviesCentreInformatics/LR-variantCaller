@@ -40,7 +40,7 @@ workflow LONG_READ_VARIANTS {
 		// 										LONG_READ_VARIANT_CALLING.out.dysgu).groupTuple(by: 0)
 		
 	
-		snp_stats    = SNP_STATS(LONG_READ_VARIANT_CALLING.out.snps)
+		// snp_stats    = SNP_STATS(LONG_READ_VARIANT_CALLING.out.snps)
 		snif_stats   = SNIF_STATS(LONG_READ_VARIANT_CALLING.out.sniffles)
 		svim_stats   = SVIM_STATS(LONG_READ_VARIANT_CALLING.out.svim)
 		cutesv_stats = CUSV_STATS(LONG_READ_VARIANT_CALLING.out.cutesv)
