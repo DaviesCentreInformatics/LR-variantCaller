@@ -16,7 +16,7 @@ process CLAIR3 {
 	// path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
 	// path("log")              , emit: log_dir
 	// path("*.log")            , emit: log
-	path "*"
+	
 
 
 	script:
