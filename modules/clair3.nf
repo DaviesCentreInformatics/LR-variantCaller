@@ -10,12 +10,12 @@ process CLAIR3 {
 	path faidx
 
 	output:
-	// path("*.vcf.gz")         , emit: vcf
-	// path("*.vcf.gz.tbi")     , emit: vcf_tbi
-	// tuple val(sampleID), path("*.gvcf.gz")        , emit: gvcf
-	// path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
-	// path("log")              , emit: log_dir
-	// path("*.log")            , emit: log
+	path("*.vcf.gz")         , emit: vcf
+	path("*.vcf.gz.tbi")     , emit: vcf_tbi
+	tuple val(sampleID), path("*.gvcf.gz")        , emit: gvcf
+	path("*.gvcf.gz.tbi")    , emit: gvcf_tbi
+	path("log")              , emit: log_dir
+	path("*.log")            , emit: log
 	
 
 
@@ -29,11 +29,11 @@ process CLAIR3 {
 	//ctg_name = ctg_name[0]
 	ctg_name = bam_name
 	
+	// work_dir="${params.temp_dir}"
+	// echo "\${work_dir}"
+	// clair3_temp=`mktemp -d \${work_dir}/CLAIRXXXXXX`
+
 	"""
-	work_dir="${params.temp_dir}"
-	echo "\${work_dir}"
-	clair3_temp=`mktemp -d \${work_dir}/CLAIRXXXXXX`
-	
 	run_clair3.sh --bam_fn ${bam} \
 		--ref_fn=${fa} \
 		--threads=${task.cpus} \
@@ -41,10 +41,9 @@ process CLAIR3 {
 		--sample_name=${sampleID} \
 		--model_path=${model_path} \
 		--ctg_name=${ctg_name} \
-		--remove_intermediate_dir \
 		--gvcf \
-		--output=\${clair3_temp}
-	mkdir -p $params.outdir/variants/SNPs/$sampleID/$ctg_name
-	cp -rf \${clair3_temp}/* $params.outdir/variants/SNPs/$sampleID/$ctg_name
+		--output=./
 	"""
+	// mkdir -p $params.outdir/variants/SNPs/$sampleID/$ctg_name
+	// cp -rf \${clair3_temp}/* $params.outdir/variants/SNPs/$sampleID/$ctg_name
 }
