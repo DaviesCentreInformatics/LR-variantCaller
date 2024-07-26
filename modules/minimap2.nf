@@ -44,7 +44,7 @@ process MINIMAP2 {
 	script:
 	if (reads.toString().endsWith(".bam")) {
 		"""
-		dorado aligner -t $task.cpus $reference $reads | samtools sort -@ $task.cpus -o ${sampleID}.sorted.bam
+		dorado aligner -t $task.cpus --mm2-preset "map-ont" $reference $reads | samtools sort -@ $task.cpus -o ${sampleID}.sorted.bam
 
 		samtools index ${sampleID}.sorted.bam
 		"""
