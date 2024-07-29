@@ -105,8 +105,6 @@ workflow {
 	} else if (params.already_mapped) {
 		VARIANTS(samples)
 		
-	}
-
 	} else {
 		DLRVC(samples)
 	}
