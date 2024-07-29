@@ -66,7 +66,7 @@ Pipeline Parameters:
 """
 
 // Create input channel from the sample sheet
-if (params.only_svs) {
+if (params.only_svs || params.already_mapped) {
 	log.info "Running SV calling only"
 	Channel.fromPath(params.samplesheet, checkIfExists: true)
 					 .splitCsv(header: true)
