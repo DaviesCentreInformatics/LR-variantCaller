@@ -10,6 +10,7 @@ params.minimap_index = null
 params.sourceDir = null
 params.outdir = params.sourceDir
 params.skip_filtlong = false
+params.already_mapped = null
 
 
 /*
@@ -86,6 +87,7 @@ if (params.only_svs) {
 include { LONG_READ_VARIANTS as DLRVC      } from './workflows/long_read_variants'
 include { SAMTOOLS_FAIDX                   } from './modules/samtools'
 include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
+include { ALREADY_MAPPED as VARIANTS       } from './workflows/already_mapped'
 
 workflow {
 	if (params.only_svs) {
@@ -99,6 +101,12 @@ workflow {
 		params.cutesv = true
 		params.dysgu = false
 		ONLY_SVS(samples, fasta, fai)
+	
+	} else if (params.already_mapped) {
+		VARIANTS(samples)
+		
+	}
+
 	} else {
 		DLRVC(samples)
 	}
