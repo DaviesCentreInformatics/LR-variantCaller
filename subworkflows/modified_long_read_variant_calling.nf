@@ -20,7 +20,7 @@ workflow LONG_READ_VARIANT_CALLING {
 		// Call SVs
 		//SNIFFLES2(bam, reference_genome, reference_genome_index)
 	
-	emit:
-		// snps = CLAIR3.out
-		// svs  = SNIFFLES2.out
+	// emit:
+	// 	// snps = CLAIR3.out
+	// 	// svs  = SNIFFLES2.out
 }
