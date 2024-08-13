@@ -88,6 +88,7 @@ include { LONG_READ_VARIANTS as DLRVC      } from './workflows/long_read_variant
 include { SAMTOOLS_FAIDX                   } from './modules/samtools'
 include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
 include { ALREADY_MAPPED as VARIANTS       } from './workflows/already_mapped'
+include { LONG_READ_VARIANTS as SNPS 	   } from './workflows/long_read_snps'
 
 workflow {
 	if (params.only_svs) {
@@ -104,6 +105,9 @@ workflow {
 	
 	} else if (params.already_mapped) {
 		VARIANTS(samples)
+		
+	} else if (params.snps_only) {
+		SNPS(samples)
 		
 	} else {
 		DLRVC(samples)

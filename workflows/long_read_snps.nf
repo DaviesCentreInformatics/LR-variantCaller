@@ -12,10 +12,15 @@ include { LONG_READ_VARIANT_CALLING } from '../subworkflows/modified_long_read_v
 workflow LONG_READ_VARIANTS {
 	take:
 		samples
-		fasta
-		fai
 		
 	main:	
+		LONG_READ_PREPROCESSING(samples)
+
+		bam = LONG_READ_MAPPING(LONG_READ_PREPROCESSING.out.filtered_reads,
+	                  params.minimap_index).mapped
 		
+		fasta = params.reference
+		fai = params.reference_idx
+
 		LONG_READ_VARIANT_CALLING(samples, fasta, fai)
 }
