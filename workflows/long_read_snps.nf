@@ -22,5 +22,5 @@ workflow LONG_READ_VARIANTS {
 		fasta = params.reference
 		fai = params.reference_idx
 
-		LONG_READ_VARIANT_CALLING(samples, fasta, fai)
+		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
 }
