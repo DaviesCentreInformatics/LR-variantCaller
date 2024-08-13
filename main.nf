@@ -87,7 +87,7 @@ if (params.only_svs || params.already_mapped) {
 include { LONG_READ_VARIANTS as DLRVC      } from './workflows/long_read_variants'
 include { SAMTOOLS_FAIDX                   } from './modules/samtools'
 include { LONG_READ_SV_CALLING as ONLY_SVS } from './workflows/long_read_svs_only'
-include { ALREADY_MAPPED as VARIANTS       } from './workflows/already_mapped'
+// include { ALREADY_MAPPED as VARIANTS       } from './workflows/already_mapped'
 include { LONG_READ_VARIANTS as SNPS 	   } from './workflows/long_read_snps'
 
 workflow {
@@ -103,12 +103,11 @@ workflow {
 		params.dysgu = false
 		ONLY_SVS(samples, fasta, fai)
 	
-	} else if (params.already_mapped) {
-		VARIANTS(samples)
-		
+	// } else if (params.already_mapped) {
+	// 	VARIANTS(samples)
 	} else if (params.snps_only) {
 		SNPS(samples)
-		
+
 	} else {
 		DLRVC(samples)
 	}
