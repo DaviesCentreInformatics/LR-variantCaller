@@ -25,7 +25,7 @@ process CLAIR3 {
 	bam_path = bam.toString()
 	//ctg_pattern = "$params.chrom_pattern"
 	//ctg_name = bam_path =~ ctg_pattern
-	bam_name = bam_path.find(/(?<=_)(chr\d{1,2}|chrX|chrY)(?=\.bam)/)
+	bam_name = bam_path.find(/(?<=_)(\d{1,2}|X|Y)(?=\.bam)/)
 	//ctg_name = ctg_name[0]
 	ctg_name = bam_name
 	
