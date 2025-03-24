@@ -8,6 +8,7 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Example](#example)
   - [Road Map](#road-map)
   - [Contributing](#contributing)
   - [License](#license)
@@ -54,10 +55,29 @@ conda create -n nextflow python=3
 
 ## Usage
 
-To run the pipeline, first you need to make a samplesheet with the samples you
-want to run. The samplesheet should be a CSV file with the following columns:
-`sampleID,fastq`. The `sampleID` is the name of the sample and `fastq` is the
-complete path to the fastq file for that sample. For example:
+If you know what you're doing or just need a refresher, you can run the pipeline
+with the following command.
+
+``` bash
+
+```bash
+nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
+    -params-file params.yaml \
+    -profile singularity,slurm
+
+# OR
+nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
+    -params-file params.yaml \
+    -profile singularity,slurm \
+    -resume
+```
+
+## Example 
+
+If this is your first time running the pipeline, this worked example should help
+you get started. For the most part, you should be able to copy and paste the
+commands as they're written, update the paths and have them work. This example 
+uses a Wagyu sample that has been downsampled to ~1x coverage.
 
 > **NOTE:**  
 > This fastq file has been downsampled to ~1x coverage. We sequenced to ~10x
@@ -65,29 +85,81 @@ complete path to the fastq file for that sample. For example:
 > was used to get this file.  
 > 10% of ~10x is ~1x.
 
+0. If you haven't already, ensure the reference genome is indexed with 
+   `minimap2`. Fortunately, this is very fast compared to `bwa`.
+
+``` bash
+minimap2 -d reference.mmi reference.fa
+```
+
+We have an already indexed reference available at:  
+`/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/Wagyu/UOA_Wagyu_1.withY.mmi`
+
+1. Create a directory where you want the samplesheet, params file and results to
+    be saved.
+
+```bash
+mkdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
+cd /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
+mkdir ont_results
+mkdir dysgu_temp
+```
+
+1. Create a samplesheet. This is a CSV file that contains the sampleID and the 
+   full path to the unmapped BAM file. Don't worry that the column header is 
+   `fastq`, it's just a placeholder.
+   
 ``` csv
 sampleID,fastq
 sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/sample01.sup.sub.bam
 ```
 
-You should create this file in a directory where you want your results to be
-saved. This is a requirement for the workflow to work with `singularity`. 
-E.g.
+This may be useful to make the samplesheet.
 
-``` bash
-mkdir -p /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV/results_batch1
-cd /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/Wagyu_SV
-vim samplesheet_batch1.csv
+```bash
+fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
+
+(echo "sampleID,fastq" && for f in ${fastq_dir}/*.sup.bam; do echo $( cut -d. -f 1 <(basename $f))","$f; done) > samplesheet.csv
+
+cat samplesheet.csv
+# sampleID,fastq
+# sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/sample01.sup.sub.bam
 ```
 
-Once you have your samplesheet, we can run the pipeline.
+2. Create a params file. This is a YAML file that contains the parameters for 
+   the pipeline. You can copy and paste the following into a file called 
+   `params.yaml`.
+
+``` yaml
+# Clair3 Parameters. These are the paths within the Clair3 container.
+model_path: /opt/models/r1041_e82_400bps_sup_v420/
+
+sourceDir: /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont/ont_results
+reference: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.fa
+reference_idx: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.fa.fai
+minimap_index: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.mmi
+
+# Skips Clair3 SNP calling.
+skip_snps: false
+
+# Call methylation values with Modkit
+methylation: false
+
+temp_dir: /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont/dysgu_temp
+```
+
+Once you have the samplesheet and params file, you can run the pipeline.
 
 ``` bash
-screen -S nextflow
+screen -S sv_caller
 
 module load Singularity
 
-nextflow run main.nf -params-file params.yaml -profile singularity,slurm 
+conda activate nextflow
+
+nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
+    -params-file params.yaml \
+    -profile singularity,slurm 
 ```
 
 Alternatively, you can provide a samplesheet of mapped bam files and call 
