@@ -3,16 +3,16 @@
 ## Table of Contents
 
 - [Davies Informatics SV Calling Pipeline](#davies-informatics-sv-calling-pipeline)
-	- [Table of Contents](#table-of-contents)
-	- [Introduction](#introduction)
-	- [Requirements](#requirements)
-	- [Installation](#installation)
-	- [Usage](#usage)
-	- [Road Map](#road-map)
-	- [Contributing](#contributing)
-	- [License](#license)
-	- [Acknowledgements](#acknowledgements)
-	- [Contact](#contact)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Road Map](#road-map)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Acknowledgements](#acknowledgements)
+  - [Contact](#contact)
 
 ## Introduction
 
@@ -33,6 +33,16 @@ Singularity to manage the containers.
 
 ## Installation
 
+Clone the repository or find it at on Phoenix
+
+``` bash
+# If getting from GitHub
+git clone git@github.com:DaviesCentreInformatics/LR-variantCaller.git
+
+# If using what's already on Phoenix
+ls /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller
+```
+
 Ensure you have Nextflow installed. The easiest way to do this is to create a
 conda environment and install Nextflow into it.
 
@@ -49,11 +59,15 @@ want to run. The samplesheet should be a CSV file with the following columns:
 `sampleID,fastq`. The `sampleID` is the name of the sample and `fastq` is the
 complete path to the fastq file for that sample. For example:
 
+> **NOTE:**  
+> This fastq file has been downsampled to ~1x coverage. We sequenced to ~10x
+> and then `samtools view --subsample 0.1 --subsample-seed 12 sample01.bam > sample01.sub.bam`
+> was used to get this file.  
+> 10% of ~10x is ~1x.
+
 ``` csv
 sampleID,fastq
-SRR12898293,/Users/callummacphillamy/Projects/LR-variantCaller/input_data/raw_fastq/SRR12898293.fastq.gz
-SRR12898316,/Users/callummacphillamy/Projects/LR-variantCaller/input_data/raw_fastq/SRR12898316.fastq.gz
-SRR24678051,/Users/callummacphillamy/Projects/LR-variantCaller/input_data/raw_fastq/SRR24678051.fastq.gz
+sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/sample01.sup.sub.bam
 ```
 
 You should create this file in a directory where you want your results to be
