@@ -56,14 +56,14 @@ N E X T F L O W  --  V A R I A N T   C A L L I N G  --  O N T
 =============================================================
 
 Pipeline Parameters:
-		Sample sheet:            ${params.samplesheet}
-		Reference genome:        ${params.reference}
-		Reference genome index:  ${params.reference_idx}
-		Minimap2 index:          ${params.minimap_index}
-		Clair3 model:            ${params.model_path} 
-		Source/Output directory: ${params.sourceDir}
+        Sample sheet:            ${params.samplesheet}
+        Reference genome:        ${params.reference}
+        Reference genome index:  ${params.reference_idx}
+        Minimap2 index:          ${params.minimap_index}
+        Clair3 model:            ${params.model_path} 
+        Source/Output directory: ${params.sourceDir}
         Pre-mapped data:         ${params.is_mapped}
-		Call SNPs:               ${params.call_snps}
+        Call SNPs:               ${params.call_snps}
         Use Sniffles:            ${params.sniffles}
         Use SVIM:                ${params.svim}
         Use CuteSV:              ${params.cutesv}
