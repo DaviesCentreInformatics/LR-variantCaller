@@ -15,11 +15,11 @@ workflow LONG_READ_VARIANT_CALLING {
 		reference_genome_index
 
 	main:
-		// Split the BAM
-		split_bams = SPLITBAM(bam).split_bam.transpose()
-
+		
 		// Call SNPs
 		if (params.call_snps) {
+            // Split the BAM
+		    split_bams = SPLITBAM(bam).split_bam.transpose()
 			CLAIR3(split_bams, reference_genome, reference_genome_index)
 			// snps = CLAIR3.out.gvcf
 		} else {
