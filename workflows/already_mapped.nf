@@ -8,7 +8,6 @@ include { BCFTOOLS_STATS as SNIF_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as SVIM_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as CUSV_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as DYSGU_STATS } from '../modules/bcftools'
-include { MODKIT						} from '../modules/modkit'
 
 /*
  * DEFINE THE MAIN WORKFLOW
