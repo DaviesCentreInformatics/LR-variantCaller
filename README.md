@@ -9,7 +9,6 @@
   - [Installation](#installation)
   - [Usage](#usage)
   - [Example - Currently being retested with new Sniffles version.](#example---currently-being-retested-with-new-sniffles-version)
-  - [Road Map](#road-map)
   - [Contributing](#contributing)
   - [License](#license)
   - [Acknowledgements](#acknowledgements)
@@ -171,27 +170,23 @@ nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-var
 ```
 
 Alternatively, you can provide a samplesheet of mapped bam files and call 
-SVs starting from there.
+variants starting from there.
+
+> **NOTE:**
+> You need to ensure the mapped BAM files are sorted and indexed and that these 
+> indexes (indices?) are in the same directory as the BAM files.
+
 
 ``` bash
-nextflow run main.nf --only_svs \
-	--svim \
-	--cutesv \
-	--dysgu \
+nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
+    --samplesheet samplesheet.csv \
+	--is_mapped \
 	-params-file params.yaml -profile singularity,slurm 
 ```
 
 Once it's running, you can detach from the screen session by pressing `Ctrl + A`
 then `D`. You can reattach to the session by running `screen -r nextflow`.
 
-
-[Back to top](#)
-
-## Road Map
-
-- [ ] Add support for other long read technologies.
-- [x] Add multiple SV callers
-- [ ] Add tool to identify consensus SVs.
 
 [Back to top](#)
 
