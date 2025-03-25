@@ -37,7 +37,7 @@ workflow ALREADY_MAPPED {
 		multiqc_input_ch = reports_and_logs.mix(
 			LONG_READ_PREPROCESSING.out.raw_report,
 			LONG_READ_PREPROCESSING.out.filtered_report,
-			LONG_READ_MAPPING.out.stats
+			LONG_READ_MAPPING.out.stats,
 			LONG_READ_MAPPING.out.idxstat,
 			LONG_READ_MAPPING.out.flagstat,
 			LONG_READ_MAPPING.out.coverage)
