@@ -25,15 +25,6 @@ workflow ALREADY_MAPPED {
 		fai = params.reference_idx
 
 		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
-
-		//svs_to_merge = Channel.empty()
-		// svs_to_merge = Channel.empty()
-		
-		// survivor_input = svs_to_merge.mix(LONG_READ_VARIANT_CALLING.out.sniffles,
-		// 										LONG_READ_VARIANT_CALLING.out.svim,
-		// 										LONG_READ_VARIANT_CALLING.out.cutesv,
-		// 										LONG_READ_VARIANT_CALLING.out.dysgu).groupTuple(by: 0)
-		
 	
 		// snp_stats    = SNP_STATS(LONG_READ_VARIANT_CALLING.out.snps)
 		snif_stats   = SNIF_STATS(LONG_READ_VARIANT_CALLING.out.sniffles)

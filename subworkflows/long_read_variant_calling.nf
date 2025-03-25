@@ -6,8 +6,6 @@ include { SVIM                          } from '../modules/svim'
 include { CUTESV                        } from '../modules/cutesv'
 include { DYSGU                         } from '../modules/dysgu'
 include { SAMTOOLS_SPLITBAM as SPLITBAM } from '../modules/samtools'
-include { MODKIT as METH                } from '../modules/modkit'
-
 
 
 workflow LONG_READ_VARIANT_CALLING {
@@ -20,16 +18,8 @@ workflow LONG_READ_VARIANT_CALLING {
 		// Split the BAM
 		split_bams = SPLITBAM(bam).split_bam.transpose()
 
-		if (params.methylation) {
-			// Call methylation
-			METH(bam, reference_genome, reference_genome_index)
-			meth = METH.out.bedMethyl
-		} else {
-			meth = Channel.empty()
-		}
-
 		// Call SNPs
-		if (params.skip_snps == false) {
+		if (params.call_snps) {
 			CLAIR3(split_bams, reference_genome, reference_genome_index)
 			// snps = CLAIR3.out.gvcf
 		} else {
@@ -37,16 +27,42 @@ workflow LONG_READ_VARIANT_CALLING {
 		}
 
 		// Call SVs
-		SNIFFLES2(bam, reference_genome, reference_genome_index)
-		SVIM(bam, reference_genome, reference_genome_index)
-		CUTESV(bam, reference_genome, reference_genome_index)
-		DYSGU(bam, reference_genome, reference_genome_index)
+        if (params.sniffles) {
+            sniffles = SNIFFLES2(bam, reference_genome, reference_genome_index).res_tuple
+        }
+        else {
+            sniffles = Channel.empty()
+        }
+        if (params.svim) {
+            svim = SVIM(bam, reference_genome, reference_genome_index).res_tuple
+        }
+        else {
+            svim = Channel.empty()
+        }
+        if (params.cutesv) {
+            cutesv = CUTESV(bam, reference_genome, reference_genome_index).res_tuple
+        }
+        else {
+            cutesv = Channel.empty()
+        }
+        if (params.dysgu) {
+            dysgu = DYSGU(bam, reference_genome, reference_genome_index).res_tuple
+        }
+        else {
+            dysgu = Channel.empty()
+        }
+		// SNIFFLES2(bam, reference_genome, reference_genome_index)
+		// SVIM(bam, reference_genome, reference_genome_index)
+		// CUTESV(bam, reference_genome, reference_genome_index)
+		// DYSGU(bam, reference_genome, reference_genome_index)
 	
 	emit:
-		// snps
-		meth
-		sniffles  = SNIFFLES2.out.res_tuple
-		svim = SVIM.out.res_tuple
-		cutesv = CUTESV.out.res_tuple
-		dysgu = DYSGU.out.res_tuple
+		// sniffles  = SNIFFLES2.out.res_tuple
+		// svim = SVIM.out.res_tuple
+		// cutesv = CUTESV.out.res_tuple
+		// dysgu = DYSGU.out.res_tuple
+        sniffles
+        svim
+        cutesv
+        dysgu
 }

@@ -10,7 +10,7 @@ include { BCFTOOLS_STATS as SNIF_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as SVIM_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as CUSV_STATS  } from '../modules/bcftools'
 include { BCFTOOLS_STATS as DYSGU_STATS } from '../modules/bcftools'
-include { MODKIT						} from '../modules/modkit'
+
 
 /*
  * DEFINE THE MAIN WORKFLOW
@@ -30,15 +30,6 @@ workflow LONG_READ_VARIANTS {
 		fai = params.reference_idx
 
 		LONG_READ_VARIANT_CALLING(bam, fasta, fai)
-
-		//svs_to_merge = Channel.empty()
-		// svs_to_merge = Channel.empty()
-		
-		// survivor_input = svs_to_merge.mix(LONG_READ_VARIANT_CALLING.out.sniffles,
-		// 										LONG_READ_VARIANT_CALLING.out.svim,
-		// 										LONG_READ_VARIANT_CALLING.out.cutesv,
-		// 										LONG_READ_VARIANT_CALLING.out.dysgu).groupTuple(by: 0)
-		
 	
 		// snp_stats    = SNP_STATS(LONG_READ_VARIANT_CALLING.out.snps)
 		snif_stats   = SNIF_STATS(LONG_READ_VARIANT_CALLING.out.sniffles)
