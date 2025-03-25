@@ -8,7 +8,7 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Example](#example)
+  - [Example - Currently being retested with new Sniffles version.](#example---currently-being-retested-with-new-sniffles-version)
   - [Road Map](#road-map)
   - [Contributing](#contributing)
   - [License](#license)
@@ -72,7 +72,7 @@ nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-var
     -resume
 ```
 
-## Example 
+## Example - Currently being retested with new Sniffles version.
 
 If this is your first time running the pipeline, this worked example should help
 you get started. For the most part, you should be able to copy and paste the
@@ -93,12 +93,13 @@ minimap2 -d reference.mmi reference.fa
 ```
 
 We have an already indexed reference available at:  
-`/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/Wagyu/UOA_Wagyu_1.withY.mmi`
+`/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.mmi`
 
 1. Create a directory where you want the samplesheet, params file and results to
     be saved.
 
 ```bash
+# Update this path to reflect your own directory structure.
 mkdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
 cd /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
 mkdir ont_results
