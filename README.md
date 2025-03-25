@@ -170,6 +170,12 @@ nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-var
 Alternatively, you can provide a samplesheet of mapped bam files and call 
 variants starting from there.
 
+```bash
+fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
+
+(echo "sampleID,fastq" && for f in ${fastq_dir}/*.sorted.bam; do echo $( cut -d. -f 1 <(basename $f))","$f; done) > mapped_samplesheet.csv
+```
+
 > **NOTE:**
 > You need to ensure the mapped BAM files are sorted and indexed and that these 
 > indexes (indices?) are in the same directory as the BAM files.

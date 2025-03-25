@@ -80,7 +80,7 @@ if (params.is_mapped) {
 		             .map ( row -> tuple(row.sampleID, row.fastq, row.fastq + ".bai") )
 					 .set { samples }
 } else {
-	log.info "Running full pipeline"
+	log.info "Running preprocessing, mapping and variant calling"
 	Channel.fromPath(params.samplesheet, checkIfExists: true)
 					 .splitCsv(header: true)
 		             .map ( row -> tuple(row.sampleID, row.fastq) )
