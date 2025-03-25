@@ -25,6 +25,7 @@ process DYSGU {
 	dysgu call --mode nanopore \
 		-p ${task.cpus} \
 		-c \
+        -x \
 		${fa} \
 		\$temp_dir \
 		${bam} | gzip - > ${sampleID}.dysgu.vcf.gz
