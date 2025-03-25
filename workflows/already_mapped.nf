@@ -43,4 +43,10 @@ workflow ALREADY_MAPPED {
 		// 	.collect()
 		// //multiqc_input_ch.view()
 		// MULTIQC(multiqc_input_ch)
+    
+    emit:
+        snif_stats
+        svim_stats
+        cutesv_stats
+        dysgu_stats
 }
