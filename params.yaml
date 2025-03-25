@@ -1,10 +1,21 @@
+# Clair3 Parameters. These are the paths within the Clair3 container.
 model_path: /opt/models/r1041_e82_400bps_sup_v420/
-samplesheet: batch1.csv
-sourceDir: /hpcfs/users/a1767591/Wagyu_SV/batch1_results
-reference: /hpcfs/users/a1767591/Wagyu_SV/ARS-UCD_BLRC/ARS_UCD_v2.0.fa
-reference_idx: /hpcfs/users/a1767591/Wagyu_SV/ARS-UCD_BLRC/ARS_UCD_v2.0.fa.fai
-minimap_index: /hpcfs/users/a1767591/Wagyu_SV/ARS-UCD_BLRC/ARS_UCD_v2.0.mmi
-skip_snps: false
-methylation: false
-only_svs: false
-temp_dir: /hpcfs/users/a1767591/Wagyu_SV/dysgu_temp
+
+sourceDir: /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont/ont_results
+reference: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.fa
+reference_idx: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.fa.fai
+minimap_index: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.mmi
+
+# If using mapped bams as input set to true.
+is_mapped: false
+
+# If wanting to call SNPs set to true.
+call_snps: true
+
+# Set to true, all the SV callers you want to use.
+sniffles: true
+svim: true
+cutesv: true
+dysgu: true
+
+temp_dir: /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont/dysgu_temp
