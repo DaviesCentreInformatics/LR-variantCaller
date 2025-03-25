@@ -140,11 +140,17 @@ reference: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD
 reference_idx: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.fa.fai
 minimap_index: /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/REFERENCES/ARS-UCD_BLRC/ARS_UCD_v2.0.mmi
 
-# Skips Clair3 SNP calling.
-skip_snps: false
+# If using mapped bams as input set to true.
+is_mapped: false
 
-# Call methylation values with Modkit
-methylation: false
+# If wanting to call SNPs set to true.
+call_snps: true
+
+# Set to true, all the SV callers you want to use.
+sniffles: true
+svim: true
+cutesv: true
+dysgu: true
 
 temp_dir: /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont/dysgu_temp
 ```
@@ -159,6 +165,7 @@ module load Singularity
 conda activate nextflow
 
 nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
+    --samplesheet samplesheet.csv \
     -params-file params.yaml \
     -profile singularity,slurm 
 ```
