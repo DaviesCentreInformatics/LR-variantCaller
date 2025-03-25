@@ -8,11 +8,9 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Example - Currently being retested with new Sniffles version.](#example---currently-being-retested-with-new-sniffles-version)
-  - [Contributing](#contributing)
+  - [Example](#example)
+  - [Output](#output)
   - [License](#license)
-  - [Acknowledgements](#acknowledgements)
-  - [Contact](#contact)
 
 ## Introduction
 
@@ -71,7 +69,7 @@ nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-var
     -resume
 ```
 
-## Example - Currently being retested with new Sniffles version.
+## Example
 
 If this is your first time running the pipeline, this worked example should help
 you get started. For the most part, you should be able to copy and paste the
@@ -184,28 +182,70 @@ nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-var
 	-params-file params.yaml -profile singularity,slurm 
 ```
 
+> **NOTE:**
+> We can use the same `params.yaml` file as before because we set `--is_mapped` 
+> on the command line.   
+> Nextflow will give CLI arguments precedence over those
+> defined in the params file.  
+> The order of priority from highest to lowest is:
+> \****command line, \***params file, \**config file, \*pipeline script 
+> (e.g. `main.nf`).
+
 Once it's running, you can detach from the screen session by pressing `Ctrl + A`
 then `D`. You can reattach to the session by running `screen -r nextflow`.
 
 
+## Output
+
+Once the pipeline has successfully completed, you should have the following
+directories within your results directory.
+
+If you skip calling SNPs then `variants/SNPs` will be absent. Likewise, if you
+skip a particular SV caller, the corresponding directory will be absent. Lastly,
+if you use pre-mapped reads the filtlong, minimap2, nanoplot and samtools
+directories will be absent from the results directory.
+
+``` console
+bcftools
+   |-- stats/ # Stats for SVs from each sample and caller.
+
+filtlong # empty
+
+minimap2 # .bam and .bam.bai files for each sample.
+
+mosdepth # results from mosdepth coverage calculations. 5 files per sample.
+         # .bed.gz, .bed.gz.csi, .global.dist.txt, .regions.bed.gz, .summary.txt
+
+multiqc # MultiQC report for the entire pipeline.
+
+nanoplot
+   |-- filtered # Nanoplot results for the filtlong filtered reads.
+   |-- raw # Nanoplot results for the raw reads.
+
+samtools
+   |-- flagstats # Flagstats from mapped BAM of each sample
+   |-- idxstats # Idxstats from mapped BAM of each sample
+   |-- stats # Stats from mapped BAM of each sample
+
+variants
+   |-- SVs
+     |-- cutesv # VCFs from CuteSV
+     |-- dysgu # VCFs from Dysgu
+     |-- sniffles # VCFs from Sniffles
+     |-- svim # VCFs from SVIM
+   |-- SNPs 
+     |-- sampleID # One directory per sample
+       |-- 1 # SNPs called for chromosome 1 of sampleID
+       |-- 2 # SNPs called for chromosome 2 of sampleID
+       |-- N # SNPs called for chromosome N of sampleID
+```
+
+
 [Back to top](#)
 
-## Contributing
-
-[Back to top](#)
 
 ## License
 
 [GNU-GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
-
-[Back to top](#)
-
-## Acknowledgements
-
-[Back to top](#)
-
-## Contact
-
-Maintainer: Callum MacPhillamy (callum.macphillamy@adelaide.edu.au)
 
 [Back to top](#)
