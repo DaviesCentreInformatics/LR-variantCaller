@@ -20,9 +20,9 @@ out_dir=$2
 model=$3
 bam_out=$(basename -s .pod5 ${pod5})_${model}.bam
 
-./dorado-0.5.3-linux-x64/bin/dorado basecaller -v \
+/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/SOFTWARE/dorado-0.5.3-linux-x64/bin/dorado basecaller -v \
     -b 0 \
 	--min-qscore 9 \
-    ./dorado-0.5.3-linux-x64/models/dna_r10.4.1_e8.2_400bps_${model}@v4.2.0 \
-    --modified-bases-models ./dorado-0.5.3-linux-x64/models/dna_r10.4.1_e8.2_400bps_${model}@v4.2.0_5mCG_5hmCG@v2/ \
+    /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/SOFTWARE/dorado-0.5.3-linux-x64/models/dna_r10.4.1_e8.2_400bps_${model}@v4.2.0 \
+    --modified-bases-models /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/SOFTWARE/dorado-0.5.3-linux-x64/models/dna_r10.4.1_e8.2_400bps_${model}@v4.2.0_5mCG_5hmCG@v2/ \
     $pod5 > ${out_dir}/${bam_out}

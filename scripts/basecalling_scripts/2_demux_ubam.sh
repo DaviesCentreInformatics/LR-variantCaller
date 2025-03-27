@@ -17,7 +17,7 @@ module load HTSlib
 bam=$1
 out_dir=$2
 
-./dorado-0.6.0-linux-x64/bin/dorado demux -t 16 \
+/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/SOFTWARE/dorado-0.5.3-linux-x64/bin/dorado demux -t 16 \
     -v \
     --kit-name "SQK-NBD114-24" \
     --output-dir ${out_dir} \
