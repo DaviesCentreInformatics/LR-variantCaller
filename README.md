@@ -183,7 +183,7 @@ fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
 
 ``` bash
 nextflow run /hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/WORKFLOWS/LR-variantCaller \
-    --samplesheet samplesheet.csv \
+    --samplesheet mapped_samplesheet.csv \
 	--is_mapped \
 	-params-file params.yaml -profile singularity,slurm 
 ```
