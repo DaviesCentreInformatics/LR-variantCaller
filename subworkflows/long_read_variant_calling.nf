@@ -6,6 +6,7 @@ include { SVIM                          } from '../modules/svim'
 include { CUTESV                        } from '../modules/cutesv'
 include { DYSGU                         } from '../modules/dysgu'
 include { SAMTOOLS_SPLITBAM as SPLITBAM } from '../modules/samtools'
+include { MOSDEPTH                      } from '../modules/mosdepth'
 
 
 workflow LONG_READ_VARIANT_CALLING {
@@ -15,6 +16,13 @@ workflow LONG_READ_VARIANT_CALLING {
 		reference_genome_index
 
 	main:
+
+        if (params.is_mapped) {
+            MOSDEPTH(bam)
+            coverage = MOSDEPTH.out
+        } else {
+            coverage = Channel.empty()
+        }
 		
 		// Call SNPs
 		if (params.call_snps) {
@@ -61,6 +69,7 @@ workflow LONG_READ_VARIANT_CALLING {
 		// svim = SVIM.out.res_tuple
 		// cutesv = CUTESV.out.res_tuple
 		// dysgu = DYSGU.out.res_tuple
+        coverage
         sniffles
         svim
         cutesv
