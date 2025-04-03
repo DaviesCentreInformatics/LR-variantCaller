@@ -77,7 +77,7 @@ if (params.is_mapped) {
 	log.info "Running variant calling only"
 	Channel.fromPath(params.samplesheet, checkIfExists: true)
 					 .splitCsv(header: true)
-		             .map ( row -> tuple(row.sampleID, row.fastq, row.fastq + ".bai") )
+		             .map ( row -> tuple(row.sampleID, row.fastq) )
 					 .set { samples }
 } else {
 	log.info "Running preprocessing, mapping and variant calling"
