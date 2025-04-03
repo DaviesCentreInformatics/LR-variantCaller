@@ -7,6 +7,7 @@ include { CUTESV                        } from '../modules/cutesv'
 include { DYSGU                         } from '../modules/dysgu'
 include { SAMTOOLS_SPLITBAM as SPLITBAM } from '../modules/samtools'
 include { MOSDEPTH                      } from '../modules/mosdepth'
+include { SAMTOOLS_INDEX as INDEX_BAM   } from '../modules/samtools'
 
 
 workflow LONG_READ_VARIANT_CALLING {
@@ -20,6 +21,9 @@ workflow LONG_READ_VARIANT_CALLING {
         if (params.is_mapped) {
             MOSDEPTH(bam)
             coverage = MOSDEPTH.out
+
+            INDEX_BAM(bam)
+            bam = INDEX_BAM.out
         } else {
             coverage = Channel.empty()
         }
