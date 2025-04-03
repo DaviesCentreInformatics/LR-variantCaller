@@ -111,3 +111,20 @@ process SAMTOOLS_FAIDX {
 		"""
 	}
 }
+
+process SAMTOOLS_INDEX {
+	tag "$sampleID"
+	label "process_low"
+
+	input:
+	tuple val(sampleID), path(bam)
+
+	output:
+	tuple val(sampleID), path(bam), path(bam + ".bai"), emit: bam
+
+
+	script:
+	"""
+	samtools index -@ ${task.cpus} ${bam}
+	"""
+}
