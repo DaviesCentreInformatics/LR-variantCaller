@@ -27,6 +27,8 @@ process SNIFFLES2 {
 		--vcf ${sampleID}.sniffles.vcf.gz \
 		--snf ${sampleID}.snf \
 		--reference $fa \
+        --minsvlen 50 \
+        --mapq 20 \
 		--threads ${task.cpus} \
 		--output-rnames
 	bzip2 ${sampleID}.snf
