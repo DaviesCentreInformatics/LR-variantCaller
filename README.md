@@ -178,7 +178,9 @@ fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
 
 > **NOTE:**
 > You need to ensure the mapped BAM files are sorted and indexed and that these 
-> indexes (indices?) are in the same directory as the BAM files.
+> indexes (indices?) are in the same directory as the BAM files. They do not
+> have to be present in the samplesheet, just in the same directory as the BAM
+> files.
 
 
 ``` bash
