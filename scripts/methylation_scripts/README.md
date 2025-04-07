@@ -18,3 +18,11 @@ sbatch $path_to_3_MODKIT_PILEUP.sh \
         ${output_dir}
 ```
 
+## If you are using PacBio data
+
+PacBio data has a separate pipeline for calling methylation values. This can be
+found [here](https://github.com/PacificBiosciences/pb-CpG-tools).
+
+It will be necessary to run their suggessted mapping step as well, i.e., use
+`pbmm2`, not `dorado align`.
+
