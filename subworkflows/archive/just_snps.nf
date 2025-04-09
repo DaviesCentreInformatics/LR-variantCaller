@@ -1,3 +1,29 @@
+/*
+ * Main Workflow: just_snps
+ * 
+ * Purpose:
+ *   This is an archived standalone pipeline for SNP/small variant calling from long reads.
+ *   It imports a dedicated workflow for long read SNP calling.
+ *
+ * Inputs (via parameters):
+ *   - params.samplesheet: Sample sheet with sample IDs and BAM file paths
+ *   - params.reference: Reference genome FASTA file
+ *   - params.fai: Reference genome index file
+ *   - params.minimap_index: Minimap2 index for the reference genome
+ *
+ * Other parameters:
+ *   - params.model_path: Path to Clair3 model directory
+ *   - params.sourceDir: Source directory for singularity container mounting
+ *   - params.outdir: Output directory for results
+ *
+ * Process:
+ *   1. Parse sample sheet to create input channel
+ *   2. Call LONG_READ_VARIANTS workflow for variant calling
+ *
+ * Note:
+ *   This is an archived pipeline that focuses only on SNP calling.
+ */
+
 nextflow.enable.dsl=2
 
 /*

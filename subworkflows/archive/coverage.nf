@@ -1,3 +1,25 @@
+/*
+ * Main Workflow: coverage
+ * 
+ * Purpose:
+ *   This is an archived standalone pipeline that generates QC reports for long read data
+ *   using NanoPlot.
+ *
+ * Inputs (via parameters):
+ *   - params.samplesheet: Sample sheet with sample IDs and FASTQ file paths
+ *
+ * Other parameters:
+ *   - params.sourceDir: Source directory for singularity container mounting
+ *   - params.outdir: Output directory for results
+ *
+ * Process:
+ *   1. Parse sample sheet to create input channel with sample ID and FASTQ file
+ *   2. Run NanoPlot on each sample to generate QC reports
+ *
+ * Note:
+ *   This is a simple archived pipeline focused only on generating QC metrics for raw reads.
+ */
+
 nextflow.enable.dsl=2
 
 /*
