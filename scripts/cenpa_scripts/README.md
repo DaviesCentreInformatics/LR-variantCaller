@@ -96,8 +96,8 @@ echo "${sample_name} completed successfully."
 
 ``` bash
 bash SEACR.sh ${sample_name}.fragments.bedGraph \
-    0.1 \ 
-    non \ 
+    0.1 \
+    non \
     stringent \
     ${output}.peaks
 ```
