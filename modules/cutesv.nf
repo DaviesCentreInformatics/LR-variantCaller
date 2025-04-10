@@ -26,7 +26,7 @@ process CUTESV {
 	cuteSV --threads ${task.cpus} \
 		--max_cluster_bias_INS 100 \
 		--max_cluster_bias_DEL 100 \
-		--diff_ratio_merging_INS 0.3 \ 
+		--diff_ratio_merging_INS 0.3 \
 		--diff_ratio_merging_DEL 0.3 \
 		--min_support 5 \
 		--min_size 50 \
