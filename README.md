@@ -115,13 +115,15 @@ sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/sample
 This may be useful to make the samplesheet.
 
 ```bash
-fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
+fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/UBAM
 
 (echo "sampleID,fastq" && for f in ${fastq_dir}/*.sup.bam; do echo $( cut -d. -f 1 <(basename $f))","$f; done) > samplesheet.csv
 
 cat samplesheet.csv
+
+# E.g.
 # sampleID,fastq
-# sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/sample01.sup.sub.bam
+# sample01,/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/UBAM/sample01.sup.sub.bam
 ```
 
 2. Create a params file. This is a YAML file that contains the parameters for 
@@ -171,7 +173,7 @@ Alternatively, you can provide a samplesheet of mapped bam files and call
 variants starting from there.
 
 ```bash
-fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT
+fastq_dir=/hpcfs/groups/phoenix-hpc-avsci/Davies_Informatics/TEST_DATA/ONT/BAM
 
 (echo "sampleID,fastq" && for f in ${fastq_dir}/*.sorted.bam; do echo $( cut -d. -f 1 <(basename $f))","$f; done) > mapped_samplesheet.csv
 ```
