@@ -1,6 +1,4 @@
 #!/bin/bash -l
-
-# Configure the resources required
 #SBATCH -p a100cpu,icelake                                         # partition (this is the queue your job will be added to)
 #SBATCH -n 1                                                    # number of tasks (sequential job starts 1 task) (check this if your job unexpectedly uses 2 nodes)
 #SBATCH -c 16                                                    # number of cores (sequential job calls a multi-thread program that uses 8 cores)
@@ -11,6 +9,42 @@
 #SBATCH --mail-type=END                                         # Send a notification email when the job is done (=END)
 #SBATCH --mail-type=FAIL                                        # Send a notification email when the job fails (=FAIL)
 #SBATCH --mail-user=callum.macphillamy@adelaide.edu.au          # Email to which notifications will be sent
+
+
+# This script performs methylation analysis using Modkit and SAMtools.
+# It is designed to be executed on a SLURM-based high-performance computing (HPC) cluster.
+#
+# Usage:
+#   ./3_MODKIT_PILEUP.sh <bam> <ref> <outpath>
+#
+# Arguments:
+#   <bam>      : Input BAM file containing aligned sequencing reads.
+#   <ref>      : Reference genome file in FASTA format.
+#   <outpath>  : Output directory where results will be saved.
+#
+# SLURM Configuration:
+#   - Partition: a100cpu, icelake
+#   - Tasks: 1 (sequential job)
+#   - Cores: 16 (multi-threaded processing)
+#   - Time: 5 hours
+#   - Memory: 32GB
+#   - Notifications: Email on job completion or failure
+#   - Email: callum.macphillamy@adelaide.edu.au
+#
+# Modules Required:
+#   - HTSlib: For handling high-throughput sequencing data.
+#   - SAMtools: For indexing and processing BAM files.
+#
+# Workflow:
+#   1. Index the input BAM file using SAMtools with 16 threads.
+#   2. Run Modkit's pileup command to generate methylation data:
+#      - Logs are saved to a file named after the input BAM file.
+#      - Output is a BED file containing methylation information.
+#
+# Output:
+#   - Log file: <outpath>/<basename>.modkit.pileup.log
+#   - BED file: <outpath>/<basename>.bedMethyl
+
 
 module load HTSlib
 module load SAMtools
