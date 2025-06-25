@@ -48,6 +48,27 @@ conda environment and install Nextflow into it.
 conda create -n nextflow python=3
 ```
 
+### Running in your own HPC environment
+
+If you're wanting to run this on your own HPC you can add another profile to `nextflow.config` as shown in the example below.
+
+```
+// Example profile for another HPC environment
+  your_hpc_env {
+    docker.enabled = false
+    singularity.enabled = true
+    podman.enabled = false
+    shifter.enabled = false
+    apptainer.enabled = false
+    charliecloud.enabled = false
+    singularity.runOptions = "--bind \${TMPDIR}:/tmp --bind \${TMPDIR} --bind ${params.sourceDir} --bind ${params.temp_dir}"
+    process.executor = '<YOUR HPC EXECUTOR, e.g. slurm>'
+    process.queue = '<comma separated list of available queues. E.g. gpuqueue,bigmemqueue>'
+    includeConfig 'conf/nextflow-singularity.config'
+  }
+```
+
+
 [Back to top](#)
 
 ## Usage
