@@ -116,7 +116,7 @@ We have an already indexed reference available at:
 1. Create a directory where you want the samplesheet, params file and results to
     be saved.
 
-```bash
+``` bash
 # Update this path to reflect your own directory structure.
 mkdir /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
 cd /hpcfs/groups/phoenix-hpc-avsci/Callum_MacPhillamy/demo_ont
